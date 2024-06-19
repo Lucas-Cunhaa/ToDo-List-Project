@@ -1,15 +1,13 @@
 
 import './App.css'
-import Form from './components/Form'
+
+import FormPage from './pages/LoginPage'
 
 function App() {
 
   return (
-    <>
-      <Form >
 
-      </Form>
-    </>
+    <FormPage />
   )
 }
 
