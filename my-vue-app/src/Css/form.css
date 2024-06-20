@@ -6,11 +6,7 @@
     color: red; 
 
 }
-.error-message {
-    font-size: 100%;
-    color: red;
-    
-}
+
 .form{
     height: 100px;
     width: 50%;
@@ -63,16 +59,24 @@ strong{
 label{
     color: var(--gray-default-color);
 }
-.checkbox{
-    
+.checkbox-section{
+    align-items: center;
+    font-size: 0.825rem;
     display: flex;
-    flex-direction: row;
-    justify-content:left;
-    margin-right: 10px;
-    position: absolute;
-    
-
+    position: relative;
+    justify-content: flex-start;
+   
 }
+.error-message{
+      font-size: 12px;
+      color: red;
+      text-align: left;
+      margin : 0
+}
+#check{
+    width: 5%;
+}
+
 
 
 

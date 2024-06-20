@@ -23,6 +23,7 @@ const Form = () => {
   return (
     <>
       <div className="form">
+      <h1> Create Account</h1>
         <div className="form-group">
 
           <input
@@ -37,7 +38,7 @@ const Form = () => {
             })}
           />
           {errors?.email?.type === "required" && (
-            <p className="error-message"> This field is required</p>
+            <p className="error-message"> Email is required</p>
           )}
           {errors?.email?.type === "validate" && (
             <p className="error-message"> Email must be valid </p>
@@ -53,7 +54,7 @@ const Form = () => {
             {...register("username", { required: true })}
           />
           {errors?.username?.type === "required" && (
-            <p className="error-message"> This field is required</p>
+            <p className="error-message"> Username is required</p>
           )}
         </div>
 
@@ -61,27 +62,28 @@ const Form = () => {
          
           <input
             type="password"
-            className={errors?.username && "input-error"}
+            className={errors?.password && "input-error"}
             placeholder="Password"
             {...register("password", { required: true })}
           />
           {errors?.password?.type === "required" && (
-            <p className="error-message"> This field is required</p>
+            <p className="error-message">Password is required</p>
           )}
         </div>
 
-        <div className="form-group checkbox">
+        <div className="form-group ">
+          <div className="checkbox-section"> 
           <input
             type="checkbox"
+            id="check"
             {...register("checkBox", { required: true })}
           />
-          <label> Confirm to the privacy terms </label>
+          <label> Confirm to the privacy terms </label> 
+          </div>
           {errors?.checkBox?.type === "required" && (
-            <p className="error-message">
-              {" "}
-              You must agree with the privacy terms
-            </p>
+            <p className="error-message">You must agree with the terms</p>
           )}
+          
         </div>
 
         <div className="form-group">
@@ -90,6 +92,7 @@ const Form = () => {
             Create account{" "}
           </button>
         </div>
+        <p> Alredy have an account?<a href=""> Sign up here</a></p>
       </div>
     </>
   );

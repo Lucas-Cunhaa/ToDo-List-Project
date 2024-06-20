@@ -33,7 +33,7 @@ const FormLogin =  () => {
             <div className="form-group">
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> LOGIN </strong></button>
             </div>
-            <p> Do not have an account yet? <a href="">Sign Up</a></p>
+            <p> Do not have an account yet? <a href="">Create here</a></p>
         </div>
         </>
     )
