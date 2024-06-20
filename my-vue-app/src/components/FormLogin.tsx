@@ -20,6 +20,8 @@ const FormLogin =  () => {
     return (
         <>
         <div className="form">
+            <h1> Login </h1>
+            
             <div className="form-group">
                 
                 <input type="text" placeholder="Username" {...register("username", { required: true})} />  

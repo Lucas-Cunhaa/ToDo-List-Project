@@ -1,7 +1,8 @@
-import FormLogin from "../components/FormLogin"
-import "../Css/formPage.css";
 
-const LoginPage = () => {
+import Form from "../components/Form";
+import "../Css/formPage.css"
+
+const RegisterForm = () => {
     return (
         <> 
         <body>
@@ -16,14 +17,15 @@ const LoginPage = () => {
         
             <div className="form-content">
             
-            <FormLogin>
+            <Form>
             
-            </FormLogin>
+            </Form>
            
             </div>
         </body>
         </>
+       
     )
 }
 
-export default LoginPage
+export default RegisterForm

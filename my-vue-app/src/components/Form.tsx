@@ -24,7 +24,7 @@ const Form = () => {
     <>
       <div className="form">
         <div className="form-group">
-          <label> Email </label>
+
           <input
             type="email"
             className={errors?.username && "input-error"}
@@ -45,7 +45,7 @@ const Form = () => {
         </div>
 
         <div className="form-group">
-          <label> Username </label>
+          
           <input
             type="text"
             className={errors?.username && "input-error"}
@@ -58,7 +58,7 @@ const Form = () => {
         </div>
 
         <div className="form-group">
-          <label> Password </label>
+         
           <input
             type="password"
             className={errors?.username && "input-error"}
@@ -70,7 +70,7 @@ const Form = () => {
           )}
         </div>
 
-        <div className="form-group">
+        <div className="form-group checkbox">
           <input
             type="checkbox"
             {...register("checkBox", { required: true })}
@@ -84,8 +84,8 @@ const Form = () => {
           )}
         </div>
 
-        <div className="submit-button">
-          <button onClick={() => handleSubmit(onSubmit)()}>
+        <div className="form-group">
+          <button  className="submit-button" onClick={() => handleSubmit(onSubmit)()}>
             {" "}
             Create account{" "}
           </button>
