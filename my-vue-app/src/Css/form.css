@@ -7,3 +7,49 @@
     color: red;
     
 }
+.form{
+    height: 100px;
+    width: 50%;
+    margin: 20% 25%;
+}
+.form-group{
+   display: flex;
+   flex-direction: column; 
+   justify-content: center;
+}
+input{
+  margin: 15px 0;
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  color: rgb(0, 0, 0);
+  border : 0; 
+  border-bottom: 2px solid rgb(201, 201, 201);
+  font-size: 23px;
+  outline: 0;
+}
+
+input:focus{
+    border-bottom: 2px solid rgb(9, 248, 176);
+}
+
+.submit-button{
+    background-color: rgb(9, 248, 176);
+    color: aliceblue;
+    width: 103%;
+    margin-top: 25px;
+
+}
+strong{
+    font-size: 20px;
+}
+.submit-button:hover {
+    transition: 0.5s;
+    background-color: aliceblue;
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+

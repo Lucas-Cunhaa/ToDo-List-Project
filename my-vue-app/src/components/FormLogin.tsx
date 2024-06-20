@@ -19,18 +19,19 @@ const FormLogin =  () => {
 
     return (
         <>
-        <div className="form-login">
-            <div className="form-login-group">
-                <label> Username </label>
+        <div className="form">
+            <div className="form-group">
+                
                 <input type="text" placeholder="Username" {...register("username", { required: true})} />  
             </div>
-            <div className="form-login-group">
-                <label> Password </label>
+            <div className="form-group">
+                
                 <input type="password" placeholder="Password" {...register("password", { required: true})}/>
             </div>
-            <div className="form-login-group">
-                <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> SEND </button>
+            <div className="form-group">
+                <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> LOGIN </strong></button>
             </div>
+            <p> Do not have an account yet? <a href="">Sign Up</a></p>
         </div>
         </>
     )
