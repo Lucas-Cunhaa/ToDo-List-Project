@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import "../Css/form.css";
-import NavBar from "./NavBar";
+
 
 interface FormLoginData {
     username : string ,  
@@ -34,7 +34,8 @@ const FormLogin =  () => {
             <div className="form-group">
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> LOGIN </strong></button>
             </div>
-            <NavBar link='/register'> Do not have an account ? register HERE </NavBar>
+            <br></br>
+            
         </div>
         </>
     )
