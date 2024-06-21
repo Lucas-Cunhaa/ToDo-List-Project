@@ -1,0 +1,41 @@
+.sideBar-body{
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    width: 20wv;
+}
+.sideBar{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    
+}
+.side-left{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    border-right: solid 1px gray;
+    align-items: center;
+}
+.return-svg{
+    margin-top: 87vh;
+}
+.side-right {
+    width: 70%;
+    height: 5%;
+    border-right: solid 1px gray;
+    border-bottom: solid 1px gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.side-bar-list{
+ margin-left: 5px;
+}
+.plus-svg{
+    background-color: aquamarine;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+

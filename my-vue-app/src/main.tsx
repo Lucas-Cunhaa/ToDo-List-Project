@@ -6,6 +6,8 @@ import RegisterPage from './pages/RegisterPage.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import SideBar from './components/SideBar.tsx'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />
+  } ,
+  {
+    path: "/home",
+    element: <SideBar />
   }
 ]);
 
