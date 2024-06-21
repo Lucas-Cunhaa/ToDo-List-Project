@@ -32,7 +32,7 @@ const FormLogin =  () => {
                 <input type="password" placeholder="Password" {...register("password", { required: true})}/>
             </div>
             <div className="form-group">
-                <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> LOGIN </strong></button>
+                <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> Login </strong> </button>
             </div>
             <br></br>
             

@@ -22,7 +22,7 @@ const LoginPage = () => {
                 </FormLogin>
                 
                         <div className="navBarLogin" > 
-                         <NavBar link='register'> Do not have an account ? register HERE </NavBar>
+                         <NavBar link='register'> Do not have an account yet? Sign Up </NavBar>
                         </div>
                           
                 

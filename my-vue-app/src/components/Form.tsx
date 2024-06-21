@@ -89,7 +89,7 @@ const Form = () => {
         <div className="form-group">
           <button  className="submit-button" onClick={() => handleSubmit(onSubmit)()}>
             {" "}
-            CREATE ACCOUNT{" "}
+            <strong> Create Account  </strong>{" "}
           </button>
         </div>
       </div>

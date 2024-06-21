@@ -22,7 +22,7 @@ const RegisterForm = () => {
             
             </Form>
             <div className="navBarRegister" > 
-                <NavBar link="/"> Alredy have an account ? Sign Up here </NavBar>
+                <NavBar link="/"> Alredy have an account ? Log in </NavBar>
             </div>
            
             </div>
