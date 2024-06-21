@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom" 
 import React, { ReactNode } from 'react'
 
+
 interface NavBarProps {
     children: ReactNode;
     link: string;
