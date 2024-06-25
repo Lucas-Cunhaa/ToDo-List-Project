@@ -24,6 +24,7 @@ const LoginPage = () => {
                         <div className="navBarLogin" > 
                          <NavBar link='register'> Do not have an account yet? Sign Up </NavBar>
                          <NavBar link='home'> Do not have an account yet? Sign Up </NavBar>
+                         <NavBar link='addList'> Do not have an account yet? Sign Up </NavBar>
                         </div>
                           
                 
