@@ -63,6 +63,12 @@
     appearance: none;
     background-color: transparent;
     margin: 0 15px;
+    cursor: pointer;
+}
+
+
+.custom-select:focus {
+    border-bottom-color:var(--page-default-color);
 }
 .add-button{
     background-color: var(--page-default-color);
