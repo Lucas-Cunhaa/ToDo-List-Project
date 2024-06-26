@@ -1,7 +1,11 @@
 import NavBar from "./NavBar"
 import "../Css/sideBar.css"
 
+
 const SideBar = () => {
+    
+    
+    
     return (
         <body className="sideBar-body"> 
         <div className="sideBar" > 
@@ -27,19 +31,22 @@ const SideBar = () => {
              
                 <div className="side-right-top" > 
 
-                
-                
                 <h1 className="side-bar-list">
                     Lists
                 </h1>
-                
-                    <svg className="plus-svg" width="26" height="26" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.5 10.5H3.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
-                    <path d="M10.5 3.5V17.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
+                    <button className="plus-button" > 
+                        <svg className="plus-svg" width="26" height="26" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.5 10.5H3.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M10.5 3.5V17.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </button>
                 </div>
                 <div className="task-list">
                 
+                </div>
+
+                <div className="addList-sectiom">
+                    
                 </div>
                 
                  

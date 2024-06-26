@@ -8,7 +8,7 @@ interface FormAddData {
     description : string 
 }
 
-const FormLogin =  () => {
+const FormLogin = ( ) => {
     const members : string[] = ["Lucas", "Joao Neto","Marcio"]
     const {
         register,
@@ -28,7 +28,7 @@ const FormLogin =  () => {
 
     return (
         <>
-        <body className="form-add-list" > 
+        
         <div className="form-add">
             <div className="form-add-top"> 
                 <h1 className="form-add-h1">List</h1>
@@ -62,7 +62,6 @@ const FormLogin =  () => {
             <br></br>
              
         </div>
-    </body>
         </>
     )
 }
