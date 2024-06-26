@@ -38,23 +38,26 @@ const FormLogin =  () => {
                 </svg>
             </div>
 
-            <div className="form-group addList">
-                <label className="label-group"> Title </label>
-                <input type="text"  {...register("title", { required: true})} />  
+            <div className="addList-form-group">
+                <label className="formAdd-label-group"> Title </label>
+                <input className="addList-input" type="text"  {...register("title", { required: true})} />  
             </div>
-            <div className="form-group">
-                <label className="label-group addList"> Member </label>
-                <select id="member" name="options"> 
+            <div className="addList-form-group">
+                <label className="formAdd-label-group"> Member </label>
+                <select id="member"  className="custom-select" name="options"> 
                    {memberOptions(members)}
-                    <input type=""  {...register("member")}/>
+                    <input className="addList-input" type=""  {...register("member")}/>
                 </select>
             </div>
-            <div className="form-group addList">
-                <label className="label-group"> Description </label>
-                <input type=""  {...register("description")}/>
+            <div className="addList-form-group">
+                <label className="formAdd-label-group"> Description </label>
+                <input className="addList-input" type="text"  {...register("description")}/>
             </div>
-            <div className="form-group">
-                <button className="add-button"onClick={() => handleSubmit(onSubmit)()}> <strong > Save </strong> </button>
+            <div className="addList-form-group">
+                <button className="add-button"onClick={() => handleSubmit(onSubmit)()}> <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.79581 11.5492L1.62581 7.37918L0.205811 8.78918L5.79581 14.3792L17.7958 2.37918L16.3858 0.969177L5.79581 11.5492Z" fill="white"/>
+</svg>
+<strong > Save </strong> </button>
             </div>
             <br></br>
              
