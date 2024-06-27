@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.to-do-content{
+    display: flex;
+    flex-direction: row;
+}
+
+.to-do-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 8px;
+    align-items: center;
+}
+.to-do-top-side{
+    width: 90%;
+    
+}

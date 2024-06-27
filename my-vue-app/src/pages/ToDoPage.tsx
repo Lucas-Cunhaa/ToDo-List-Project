@@ -1,21 +1,27 @@
 import TopBar from "../components/TopBar";
 import SideBar from "../components/SideBar";
+import "../Css/toDo.css";
 
 const ToDoPage = () => {
-    return(
-        <> 
-        <div className="right-side">
-            <SideBar />
+  return (
+    <>
+      <div className="to-do-content">
+        <div className="to-do-right-side">
+          <SideBar />
         </div>
-        <div className="top-side">
+        <div className="to-do-section"> 
+          <div className="to-do-top-side">
             <TopBar />
-
-         </div>
-         <div className="to-do-section">
-
-         </div>
+          </div>
+          <div className="to-do-tasks">
+            <div className="todo"> <h1> HERE</h1></div>
+            <div className="todo"> <h1> HERE</h1></div>
+            <div className="todo"> <h1> HERE</h1></div>
             
-        </>
-    )
-}
-export default ToDoPage
+          </div>
+       </div>
+       </div>
+    </>
+  );
+};
+export default ToDoPage;
