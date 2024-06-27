@@ -4,6 +4,7 @@
     z-index: -10;
     width: 100%;
     max-width: 800px;
+    margin-right: 70vw;
 }
 .home-page {
     display: flex;

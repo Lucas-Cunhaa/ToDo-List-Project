@@ -26,6 +26,10 @@
     cursor: pointer;
     transition: border-color 0.25s;
 }
+.top-bar-button:hover{
+    background-color: rgb(0, 0, 0);
+    transition: 0.67s;
+}
 .top-bar-button-text{
     font-size: 15px;
     margin-left: 5px;
@@ -37,5 +41,5 @@
 .delete-svg:hover{
     background-color: rgb(202, 85, 85);
     transition: 0.6s;
-    
 }
+

@@ -17,5 +17,12 @@
 }
 .to-do-top-side{
     width: 90%;
-    
+}
+.to-do-tasks{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.todo{
+    width: 300px;
 }
