@@ -25,13 +25,13 @@
     background-color: var(--gray-default-color);
 }
 .list-name{
-    font-size: 12px;
-    color : black; 
+    font-size: 11px;
+    color : rgb(41, 41, 41); 
     font-weight: 800;
 }
 .list-description {
     font-size: 10px;
-    color : black;
+    color : rgb(59, 59, 59);
     font-weight: 600;
     margin: -15px 0 0 10px;
 }

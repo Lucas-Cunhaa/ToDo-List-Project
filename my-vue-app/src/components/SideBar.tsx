@@ -13,8 +13,8 @@ const SideBar = () => {
   }
 
   return (
-
-    <div className="sideBar-div">
+    <> 
+   
      
       <div className="sideBar">
         <div className="side-left">
@@ -126,16 +126,12 @@ const SideBar = () => {
 
    </div>
 
-          <div className="container-section">
+          
            { openForm && <FormAddList closeForm={setFalse}/>} 
-           <img
-              src="\src\assets\homeList.png"
-              className="home-img"
-              alt="A list with clounds to start a new one"
-            ></img>
-          </div>
+            
+          
         </div>
-      </div>
+      </>
     
   );
 };
