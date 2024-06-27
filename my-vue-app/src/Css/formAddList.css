@@ -7,20 +7,32 @@
     --page-default-color : rgb(18, 218, 158);
     --gray-default-color : rgb(170, 170, 170);
 } 
+.form-add{
+    width: 40%;
+    height: 50h;
+    margin: 20% 25%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease; 
+    position: absolute;
+    margin-top: 10px;
+}
 .addList-form-group{
    display: flex;
    flex-direction: column; 
    margin-top: 20px;
    width: 100%;
    
+   
 }
-.form-add{
-    width: 40%;
-    height: 75vh;
-    margin: 20% 25%;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: box-shadow 0.3s ease; 
+.label-button{
+    cursor: pointer;
+}
+.close-button{
+    display: none;
+}
+.close-svg{
+    color: rgb(0, 0, 0);
 }
 .form-add-top{
     display: flex;

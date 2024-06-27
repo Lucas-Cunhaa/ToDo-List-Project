@@ -1,10 +1,12 @@
 .sideBar-body{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
+    position: relative;
 }
 .sideBar{
     display: flex;
     flex-direction: row;
     width: 20%;
+    height: 100vh;
     
 }
 .side-left{
@@ -14,6 +16,12 @@
     height: 100%;
     border-right: solid 1px gray;
     align-items: center;
+}
+.plus-svg{
+    cursor: pointer;
+}
+.plus-button{
+    display: none;
 }
 .return-svg{
     margin-top: 87vh;
@@ -46,5 +54,6 @@
     margin-right: 5px;
 }
 .home-img {
-    margin-left: 100px;
+    height: 90vh;
+    margin-left: 300px;
 }
