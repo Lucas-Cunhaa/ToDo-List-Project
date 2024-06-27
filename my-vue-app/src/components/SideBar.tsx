@@ -2,6 +2,7 @@ import NavBar from "./NavBar";
 import "../Css/sideBar.css";
 import { useState } from "react";
 import FormAddList from "../components/FormAddList"
+import Lists from "./Lists";
 
 const SideBar = () => {
 
@@ -12,6 +13,7 @@ const SideBar = () => {
   }
 
   return (
+
     <div className="sideBar-div">
      
       <div className="sideBar">
@@ -117,10 +119,16 @@ const SideBar = () => {
               </svg>
            
           </div>
-          <div className="task-list"></div>
+          
+          <div className="task-list">
+            <Lists />
+          </div>
+
+   </div>
+
           <div className="container-section">
            { openForm && <FormAddList closeForm={setFalse}/>} 
-            <img
+           <img
               src="\src\assets\homeList.png"
               className="home-img"
               alt="A list with clounds to start a new one"
@@ -128,7 +136,7 @@ const SideBar = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

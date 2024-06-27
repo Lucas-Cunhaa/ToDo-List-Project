@@ -1,6 +1,6 @@
-.sideBar-body{
+.sideBar-div{
     background-color: rgb(255, 255, 255);
-    position: relative;
+    position: relative; 
 }
 .sideBar{
     display: flex;
@@ -55,5 +55,8 @@
 }
 .home-img {
     height: 90vh;
-    margin-left: 300px;
+    margin-left: 250px;
+}
+.container-section {
+    width: 10%;
 }
