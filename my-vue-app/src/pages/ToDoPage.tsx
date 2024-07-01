@@ -1,7 +1,7 @@
 import TopBar from "../components/TopBar";
 import SideBar from "../components/SideBar";
 import "../Css/toDo.css";
-
+import ToDoComponent from "../components/toDos";
 const ToDoPage = () => {
   return (
     <>
@@ -17,6 +17,7 @@ const ToDoPage = () => {
             <div className="todo"> <h1> HERE</h1></div>
             <div className="todo"> <h1> HERE</h1></div>
             <div className="todo"> <h1> HERE</h1></div>
+            <ToDoComponent /> 
             
           </div>
        </div>
