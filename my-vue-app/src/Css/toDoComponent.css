@@ -2,7 +2,6 @@
     margin : 0; 
     padding : 0; 
     box-sizing: border-box;
-    color: black;
     
 }
 .task-group{
@@ -13,6 +12,7 @@
     margin: 20px 20px;
     justify-content: space-between;
     border-radius: 5px 5px 5px 5px;
+    color: rgb(0, 0, 0);
 }
 .to-do{
     border: 2px  dashed black;
@@ -98,3 +98,13 @@
   .to-do-select-state:focus {
     border-color: #08dbad;
   }
+  .select-group{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .delete-small-svg{
+    margin-top : -12px
+  }
+ 
