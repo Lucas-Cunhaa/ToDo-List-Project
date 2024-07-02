@@ -1,0 +1,100 @@
+*{
+    margin : 0; 
+    padding : 0; 
+    box-sizing: border-box;
+    color: black;
+    
+}
+.task-group{
+    background-color: #F66C0E0F ;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 20px 20px;
+    justify-content: space-between;
+    border-radius: 5px 5px 5px 5px;
+}
+.to-do{
+    border: 2px  dashed black;
+}
+.doing{
+    border: 2px  dashed yellow;
+}
+.done{
+    border: 2px  dashed var(--page-default-color)
+}
+.task-left{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 10px 20px;
+    width: 50%;
+   
+}
+.task-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.task-title-h2{
+    font-size: 16px;
+    font-weight: 800;
+}
+.paper-svg{
+    background-color: rgb(255, 255, 255);
+}
+.task-description-h3{
+    font-size: 12px;
+}
+.task-right{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 0 10px;
+    width: 50%;
+}
+.task-member{
+    display: flex;
+    align-items: center;
+}
+.task-member-h2{
+    font-size: 20px;
+    font-weight: 800;
+}
+.to-do-select-state{
+    display: flex;
+    align-items: center;
+}
+.member-svg{
+    background-color: rgb(255, 255, 255);
+}
+.select-container {
+    position: relative;
+    display: inline-block;
+  }
+  .select-container {
+    position: relative;
+    display: inline-block;
+    width: 100%; 
+  }
+  .to-do-select-state {
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    background-color: #F66C0E0F ;
+    border: 2px solid #ddd; 
+    padding: 5px 10px 5px 30px; 
+    font-size: 16px; 
+    color: #333; 
+    width: 80%; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.3s ease-in-out; 
+    background: url('../assets/rocket.svg') no-repeat 5px center, url('../assets/select.svg') no-repeat calc(100% - 5px) center, #fff; 
+    background-size: 20px 20px, 20px 20px; 
+    cursor: pointer;
+    border-radius: 4px 4px 4px 4px;
+  }
+  
+  .to-do-select-state:focus {
+    border-color: #08dbad;
+  }
