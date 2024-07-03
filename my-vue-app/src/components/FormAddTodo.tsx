@@ -8,8 +8,11 @@ interface FormAddData {
   description: string;
 }
 
+interface FormAddToDoProps {
+  closeForm : () => void
+}
+const FormAddToDo= ( props : FormAddToDoProps) => {
 
-const FormAddToDo= () => {
   const members: string[] = [
     "Lucas",
     "Joao Neto",
@@ -56,9 +59,9 @@ const FormAddToDo= () => {
           <h1 className="form-add-h1">To Do</h1>
           <button
             className="close-button"
-            onClick={()=> {console.log("JoaoNetoEGay")}}
+            onClick={()=> {props.closeForm()}}
           ></button>
-          <label className="label-button" onClick={() => console.log("JoaoNetoEGaY")}>
+          <label className="label-button" onClick={() => props.closeForm()}>
             <svg
               className="close-svg"
               width="49"

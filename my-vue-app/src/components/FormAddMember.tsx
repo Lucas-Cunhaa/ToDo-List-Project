@@ -5,9 +5,11 @@ interface FormAddData {
     email: string;
     name:string;
 }
+interface FormAddMemberProps { 
+    closeForm: () => void
+}
 
-
-const FormAddMember = () => {
+const FormAddMember = (props : FormAddMemberProps) => {
  
   const { register, handleSubmit } = useForm<FormAddData>();
 
@@ -25,7 +27,7 @@ const FormAddMember = () => {
             className="close-button"
             onClick={()=> {console.log("JoaoNetoEGay")}}
           ></button>
-          <label className="label-button" onClick={() => console.log("JoaoNetoEGaY")}>
+          <label className="label-button" onClick={() => props.closeForm()}>
             <svg
               className="close-svg"
               width="49"

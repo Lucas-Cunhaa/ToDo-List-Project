@@ -1,5 +1,20 @@
 import "../Css/topBar.css"
+import FormAddToDo from "./FormAddTodo"
+import FormAddMember from "./FormAddMember"
+import { useState } from "react"
+
 const TopBar = () => {
+const [openFormToDo, setOpenFormToDo] = useState(false)
+
+const [openFormMember, setOpenFormMember] = useState(false)
+
+const closeFormAddTodo = () => {
+    setOpenFormToDo(false)
+}
+
+const closeFormAddMember = () => {
+    setOpenFormMember(false)
+}
 
 return (
     <div className="nav-top">
@@ -13,7 +28,7 @@ return (
         <circle cx="24.965" cy="24.9591" r="23.9795" stroke="black" stroke-width="1.22972"/>
         </svg>
         
-        <button className="top-bar-button">
+        <button className="top-bar-button" onClick={() => setOpenFormToDo(true)}>
         <svg className="small-plus-svg" width="18" height="18" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.5 10.5H3.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
         <path d="M10.5 3.5V17.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
@@ -21,7 +36,7 @@ return (
         <strong className="top-bar-button-text">Add To Do</strong>
         </button>
 
-        <button className="top-bar-button" >
+        <button className="top-bar-button" onClick={() => setOpenFormMember(true)}>
         <svg className="small-plus-svg" width="18" height="18" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M17.5 10.5H3.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
         <path d="M10.5 3.5V17.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
@@ -29,9 +44,15 @@ return (
         <strong className="top-bar-button-text" >Invite People</strong>
         </button>
         
-        
+        { openFormToDo && <FormAddToDo closeForm={closeFormAddTodo} /> }
+
+        { openFormMember && <FormAddMember closeForm={closeFormAddMember} /> }
+
+
         </div> 
-    </div>)
+        
+    </div>
+    )
 
 }
 export default TopBar
