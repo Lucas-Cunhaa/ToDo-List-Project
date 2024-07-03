@@ -4,8 +4,8 @@ import './index.css'
 import LoginPage from './pages/LoginPage.tsx'
 import RegisterPage from './pages/RegisterPage.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
-import HomePage from './pages/HomePage.tsx'
 import ToDoPage from './pages/ToDoPage.tsx'
+import FormAddMember from './components/FormAddMember.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
@@ -24,11 +24,11 @@ const router = createBrowserRouter([
   } ,
   {
     path: "/home",
-    element: <HomePage />
+    element: <ToDoPage />
   } ,
   {
     path: "/toDo",
-    element: <ToDoPage />
+    element: <FormAddMember />
   }
 ]);
 

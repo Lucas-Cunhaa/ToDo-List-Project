@@ -71,6 +71,7 @@
     background-color: transparent;
     margin: 0 15px;
     cursor: pointer;
+    background:  url('../assets/select.svg') no-repeat calc(100% - 5px) center, #fff; 
 }
 
 
@@ -91,8 +92,12 @@
     background-color: var(--page-default-color) ;
     cursor: pointer;
     transition: border-color 0.25s;
+    display: flex;
+    justify-content:center;
+    align-items: center;
     
 }
+
 strong{
     font-size: 22px;
 }
