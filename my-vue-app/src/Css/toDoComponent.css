@@ -14,6 +14,24 @@
     border-radius: 5px 5px 5px 5px;
     color: rgb(0, 0, 0);
 }
+.all-tasks{
+    display: flex;
+    flex-direction: row;
+   
+}
+.to-do-group{
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 2px red;
+}
+.doing-group{
+    display: flex;
+    flex-direction: column;
+}
+.done-group{
+    display: flex;
+    flex-direction: column;
+}
 .to-do{
     border: 2px  dashed black;
 }

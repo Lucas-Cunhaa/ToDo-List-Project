@@ -14,9 +14,9 @@ const ToDoPage = () => {
           <div className="to-do-top-side">
             <TopBar />
           </div>
-          <div className="to-do-tasks">
+         
             <ToDoComponent /> 
-          </div>
+        
        </div>
        </div>
     </>

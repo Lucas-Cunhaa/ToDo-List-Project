@@ -19,9 +19,8 @@
     width: 90%;
 }
 .to-do-tasks{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+    width: 100wh;
+    height: 100vh;
 }
 .todo{
     width: 300px;
