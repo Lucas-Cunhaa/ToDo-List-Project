@@ -48,7 +48,7 @@ const ToDoComponent = () => {
   return (
     <div className="all-tasks">
       <div className="to-do-group"> 
-        <h2 className="to-do-h2" >To Do</h2>
+        <h2 className="group-title to-do-h2">To Do</h2>
       {tasks.map(({ id, title, description, state, member }) => (
          <div key={id} > 
          {state.toLowerCase() === "todo" && (
@@ -128,12 +128,11 @@ const ToDoComponent = () => {
       ))}
   </div>
     <div className="doing-group">
-      <h2 className="doing-h2">Doing</h2>
+      <h2 className="group-title doing-h2">Doing</h2>
       {tasks.map(({ id, title, description, state, member }) => (
         <div key={id} > 
          {state.toLowerCase() === "doing" && (
             <div className="task-group doing">
-              <h1 className="doing-h1">Doing</h1>
               <div className="task-left doing-left">
                 <div className="task-title doing-title">
                   <svg
@@ -209,7 +208,7 @@ const ToDoComponent = () => {
       ))}
    </div>
    <div className="done-group"> 
-   <h2 className="done-h2">Done</h2>
+   <h2 className="group-title done-h2">Done</h2>
       {tasks.map(({ id, title, description, state, member }) => (
         <div key={id}>
           {state.toLowerCase() === "done" && (
@@ -287,6 +286,7 @@ const ToDoComponent = () => {
           )}
         </div>
       ))}
+       <div className="done-border-bottom"></div>
     </div>
   </div>
   );

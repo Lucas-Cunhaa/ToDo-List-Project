@@ -1,9 +1,12 @@
 *{
     margin : 0; 
     padding : 0; 
-    box-sizing: border-box;
-    
+    box-sizing: border-box;  
 }
+:root {
+    --page-default-color : rgb(18, 218, 158);
+    --gray-default-color : rgb(170, 170, 170);
+} 
 .task-group{
     background-color: #F66C0E0F ;
     display: flex;
@@ -13,24 +16,44 @@
     justify-content: space-between;
     border-radius: 5px 5px 5px 5px;
     color: rgb(0, 0, 0);
+    width: 400px;
+    height: 150px;
 }
 .all-tasks{
     display: flex;
     flex-direction: row;
-   
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.group-title{
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgb(221, 221, 221);
+    align-items: center;
+    width: 100%;
 }
 .to-do-group{
     display: flex;
     flex-direction: column;
-    border-bottom: solid 2px red;
+    align-items: center;
+    border-bottom: 30px solid rgb(221, 221, 221);
+    margin-left: 10px;
 }
 .doing-group{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    border-bottom: 30px solid rgb(221, 221, 221);
+    margin-left: 10px;
 }
 .done-group{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    border-bottom: 30px solid rgb(221, 221, 221);
+    margin-left: 10px;
 }
 .to-do{
     border: 2px  dashed black;
@@ -114,7 +137,7 @@
   }
   
   .to-do-select-state:focus {
-    border-color: #08dbad;
+    border-color: var(--page-default-color)
   }
   .select-group{
     display: flex;
