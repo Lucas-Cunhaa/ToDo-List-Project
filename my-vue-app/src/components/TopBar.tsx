@@ -47,8 +47,7 @@ return (
         { openFormToDo && <FormAddToDo closeForm={closeFormAddTodo} /> }
 
         { openFormMember && <FormAddMember closeForm={closeFormAddMember} /> }
-
-
+        
         </div> 
         
     </div>
