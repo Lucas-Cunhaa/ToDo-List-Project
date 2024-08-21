@@ -1,21 +1,26 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm } from "react-hook-form";
 import "../Css/form.css";
-
-
-interface FormLoginData {
-    username : string ,  
-    password : string , 
-}
+import useAxios from "../hooks/use-axios";
+import { FormDataTypes } from "../interface/types";
 
 const FormLogin =  () => {
+
+    const { data, loading, error, axiosFetch } = useAxios('login', 'post')
 
     const {
         register,
         handleSubmit,
-      } = useForm<FormLoginData>();
+      } = useForm<FormDataTypes>();
     
-    const onSubmit = (data: FormLoginData) => {
-        console.log(data);
+    const onSubmit = (formData: FormDataTypes) => {
+        axiosFetch({
+            email: formData.email, 
+            password: formData.password 
+        })
+
+            
+        
     };
 
     return (
@@ -25,7 +30,7 @@ const FormLogin =  () => {
             
             <div className="form-group">
                 
-                <input type="text" placeholder="Username" {...register("username", { required: true})} />  
+                <input type="text" placeholder="email" {...register("email", { required: true})} />  
             </div>
             <div className="form-group">
                 
