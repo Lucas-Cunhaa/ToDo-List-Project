@@ -15,11 +15,16 @@ const FormLogin =  () => {
     
     const onSubmit = (formData: FormDataTypes) => {
         axiosFetch({
-            email: formData.email, 
-            password: formData.password 
+            body: {
+                email: formData.email, 
+                password: formData.password 
+            }
+          
         })
 
-            
+        console.log(data)
+
+
         
     };
 
