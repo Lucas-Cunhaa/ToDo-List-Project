@@ -11,7 +11,7 @@ interface UseAxiosResponse<T> {
     axiosFetch: (configs?: AxiosRequestConfig) => Promise<void>;
 }
 
-export default function useAxios<T = unknown>(url: string, method: RequestMethod): UseAxiosResponse<T> {
+function useSAxios<T = unknown>(url: string, method: RequestMethod): UseAxiosResponse<T> {
     const [data, setData] = useState<T | null>(null); 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');

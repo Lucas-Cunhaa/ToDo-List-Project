@@ -6,3 +6,11 @@ export interface FormDataTypes {
     email: string, 
     password: string
 }
+
+export interface FormRequestTypes { 
+    url : string, 
+    method: RequestMethod, 
+    data?: object, 
+    params?: object
+
+}

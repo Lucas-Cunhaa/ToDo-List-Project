@@ -1,31 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useForm } from "react-hook-form";
 import "../Css/form.css";
-import useAxios from "../hooks/use-axios";
+import useAxios from "../hooks/useAxios"
 import { FormDataTypes } from "../interface/types";
-
+import { useState } from "react";
 const FormLogin =  () => {
 
-    const { data, loading, error, axiosFetch } = useAxios('login', 'post')
 
+const { response, error, loading, fetch } = useAxios()
+const [isLoading, setIsLoading] = useState(loading)
     const {
         register,
         handleSubmit,
       } = useForm<FormDataTypes>();
     
     const onSubmit = (formData: FormDataTypes) => {
-        axiosFetch({
-            body: {
-                email: formData.email, 
-                password: formData.password 
-            }
-          
-        })
-
-        console.log(data)
-
-
-        
++       setIsLoading(true)
+        fetch("login", "get", {formData.email, formData.password}, {})
+     
     };
 
     return (

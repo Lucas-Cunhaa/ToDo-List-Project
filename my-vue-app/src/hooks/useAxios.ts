@@ -1,15 +1,14 @@
-import axios from "axios"
 import axiosInstance from "../helper/axiosInstance"
 import { useState } from "react"
+import { FormDataTypes, FormRequestTypes } from "../interface/types"
 
 const useAxios = () => {
     const [response, setResponse] = useState(null)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const fetch = async({ url, method, data = {} , params = {} }) => {
+    const fetch = async(p0: string, p1: string, p2: { formData: FormDataTypes; "": any }, p3: { data: any }, { url, method, data = {}, params = {} }: FormRequestTypes) => {
         setLoading(true)
-        
         try {
             const result = await axiosInstance({
                 url, 
@@ -26,4 +25,4 @@ const useAxios = () => {
     }
     return {response, error, loading, fetch}
 }
-export defualt useAxios
+export default useAxios
