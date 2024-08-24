@@ -16,7 +16,7 @@ const [isLoading, setIsLoading] = useState(loading)
     
     const onSubmit = (formData: FormDataTypes) => {
 +       setIsLoading(true)
-        fetch("login", "get", {formData.email, formData.password}, {})
+        fetch({ url:"login", method:"get", data:{formData.email, formData.password}, params:{} })
      
     };
 

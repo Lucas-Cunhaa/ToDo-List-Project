@@ -7,7 +7,7 @@ const useAxios = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const fetch = async(p0: string, p1: string, p2: { formData: FormDataTypes; "": any }, p3: { data: any }, { url, method, data = {}, params = {} }: FormRequestTypes) => {
+    const fetch = async( { url, method, data = {}, params = {} }: FormRequestTypes) => {
         setLoading(true)
         try {
             const result = await axiosInstance({
@@ -17,12 +17,19 @@ const useAxios = () => {
                 params
             })
             setResponse(result)
-        } catch (error) {
-            setError(error.response ? error.responde.data: error.message)
+        } catch (error: unknown) {
+            if (error) {
+                setError(error) 
+            } else {
+                setError(error.message)
+            }
         } finally {
             setLoading(false)
         }
+           
+    
+        }
+     return {response, error, loading, fetch}
     }
-    return {response, error, loading, fetch}
-}
+    
 export default useAxios
