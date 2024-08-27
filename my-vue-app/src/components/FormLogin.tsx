@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import "../Css/form.css";
 import useAxios from "../hooks/useAxios"
 import { FormDataTypes } from "../interface/types";
+import Spinner from "./SpinnerLoader";
 const FormLogin =  () => {
 
 const { response, error, loading, fetch } = useAxios()
@@ -42,6 +43,7 @@ const { response, error, loading, fetch } = useAxios()
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> Login </strong> </button>
             </div>
             <br></br>
+            <Spinner showSpinner={loading} />
             {error ? <p>{error.response?.statusText }</p> : null
 
             }
