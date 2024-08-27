@@ -1,35 +1,35 @@
 import axiosInstance from "../helper/axiosInstance"
 import { useState } from "react"
-import { FormDataTypes, FormRequestTypes } from "../interface/types"
+import { FormRequestTypes } from "../interface/types"
+import { AxiosError, AxiosResponse } from "axios"
 
 const useAxios = () => {
-    const [response, setResponse] = useState(null)
-    const [error, setError] = useState("")
+    const [response, setResponse] = useState<AxiosResponse | null>(null)
+    const [error, setError] = useState<string>("")
     const [loading, setLoading] = useState(false)
 
-    const fetch = async( { url, method, data = {}, params = {} }: FormRequestTypes) => {
+    const fetch = async ({ url, method, data = {}, params = {} }: FormRequestTypes) => {
         setLoading(true)
         try {
             const result = await axiosInstance({
-                url, 
-                method, 
-                data, 
-                params
+                url,
+                method,
+                data,
+                params,
             })
-            setResponse(result)
-        } catch (error: unknown) {
-            if (error) {
-                setError(error) 
+            setResponse(result.data) 
+        } catch (err: unknown) {
+            if (err instanceof AxiosError) {
+                setError(err.message);
             } else {
-                setError(error.message)
+                setError('An unexpected error occurred.');
             }
         } finally {
             setLoading(false)
         }
-           
-    
-        }
-     return {response, error, loading, fetch}
     }
-    
+
+    return { response, error, loading, fetch }
+}
+
 export default useAxios
