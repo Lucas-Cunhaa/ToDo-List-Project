@@ -24,7 +24,8 @@ const useAxios = () => {
                 setError(err);
             } 
         } finally {
-            setLoading(false)
+            setTimeout( () => {setLoading(false)} , 1000)
+            
         }
     }
 
