@@ -3,22 +3,27 @@ import { useForm } from "react-hook-form";
 import "../Css/form.css";
 import useAxios from "../hooks/useAxios"
 import { FormDataTypes } from "../interface/types";
-import { useState } from "react";
 const FormLogin =  () => {
 
-
 const { response, error, loading, fetch } = useAxios()
-const [isLoading, setIsLoading] = useState(loading)
+
     const {
         register,
         handleSubmit,
       } = useForm<FormDataTypes>();
     
-    const onSubmit = (formData: FormDataTypes) => {
-+       setIsLoading(true)
-        fetch({ url:"login", method:"get", data:{formData.email, formData.password}, params:{} })
-     
-    };
+      const onSubmit = (formData: FormDataTypes) => {
+        fetch({ 
+            url: "login", 
+            method: "post", 
+            data: { 
+                    email: formData.email, 
+                    password: formData.password
+                },
+        })
+    }
+
+    console.log(response, loading, error)
 
     return (
         <>
@@ -37,6 +42,9 @@ const [isLoading, setIsLoading] = useState(loading)
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> Login </strong> </button>
             </div>
             <br></br>
+            {error ? <p>{error.response?.statusText }</p> : null
+
+            }
             
         </div>
         </>

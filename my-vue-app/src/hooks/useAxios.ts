@@ -5,7 +5,7 @@ import { AxiosError, AxiosResponse } from "axios"
 
 const useAxios = () => {
     const [response, setResponse] = useState<AxiosResponse | null>(null)
-    const [error, setError] = useState<string>("")
+    const [error, setError] = useState<AxiosError>()
     const [loading, setLoading] = useState(false)
 
     const fetch = async ({ url, method, data = {}, params = {} }: FormRequestTypes) => {
@@ -18,12 +18,11 @@ const useAxios = () => {
                 params,
             })
             setResponse(result.data) 
-        } catch (err: unknown) {
+        } catch (err) {
+            console.log(err)
             if (err instanceof AxiosError) {
-                setError(err.message);
-            } else {
-                setError('An unexpected error occurred.');
-            }
+                setError(err);
+            } 
         } finally {
             setLoading(false)
         }
