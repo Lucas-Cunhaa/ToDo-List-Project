@@ -76,9 +76,16 @@ label{
 #check{
     width: 5%;
 }
-
-
-
+.login-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-error-message{
+    font-weight: 900;
+    width: 100%;
+    color: red;
+}
 
 
 

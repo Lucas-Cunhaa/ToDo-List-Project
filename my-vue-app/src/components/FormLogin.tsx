@@ -43,10 +43,11 @@ const { response, error, loading, fetch } = useAxios()
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> Login </strong> </button>
             </div>
             <br></br>
-            <Spinner showSpinner={loading} />
-            {error ? <p>{error.response?.statusText }</p> : null
+            <div className="login-spinner"> <Spinner showSpinner={loading} /> </div>
+            {error ? <p className="login-error-message">{error.response?.statusText }</p> : null
 
             }
+            
             
         </div>
         </>
