@@ -30,7 +30,9 @@ const { response, error, loading, fetch } = useAxios()
         <>
         <div className="form">
             <h1> Login </h1>
-            
+            {error  ? <p className="login-error-message">{error.response?.statusText }</p> : null
+
+            }   
             <div className="form-group">
                 
                 <input type="text" placeholder="email" {...register("email", { required: true})} />  
@@ -44,11 +46,6 @@ const { response, error, loading, fetch } = useAxios()
             </div>
             <br></br>
             <div className="login-spinner"> <Spinner showSpinner={loading} /> </div>
-            {error ? <p className="login-error-message">{error.response?.statusText }</p> : null
-
-            }
-            
-            
         </div>
         </>
     )

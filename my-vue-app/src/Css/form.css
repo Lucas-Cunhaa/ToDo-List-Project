@@ -80,10 +80,11 @@ label{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left : 10px ;
 }
 .login-error-message{
-    font-weight: 900;
-    width: 100%;
+    font-weight: 600;
+    font-size : 20 px;
     color: red;
 }
 
