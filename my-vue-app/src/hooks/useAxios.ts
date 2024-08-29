@@ -4,11 +4,11 @@ import { FormRequestTypes } from "../interface/types"
 import { AxiosError, AxiosResponse } from "axios"
 
 const useAxios = () => {
-    const [response, setResponse] = useState<AxiosResponse | null>(null)
+    const [response, setResponse] = useState<AxiosResponse| null>(null)
     const [error, setError] = useState<AxiosError>()
     const [loading, setLoading] = useState(false)
 
-    const fetch = async ({ url, method, data = {}, params = {} }: FormRequestTypes) => {
+    const fetch = async({ url, method, data = {}, params = {} }: FormRequestTypes) => {
         setLoading(true)
         try {
             const result = await axiosInstance({

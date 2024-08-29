@@ -6,15 +6,13 @@ import { FormDataTypes } from "../interface/types";
 import Spinner from "./SpinnerLoader";
 const FormLogin =  () => {
 
-const { response, error, loading, fetch } = useAxios()
+    const { response, error, loading, fetch } = useAxios();
 
-    const {
-        register,
-        handleSubmit,
-      } = useForm<FormDataTypes>();
+    const {register, handleSubmit,} = useForm<FormDataTypes>();
     
-      const onSubmit = (formData: FormDataTypes) => {
-        fetch({ 
+    const onSubmit =  async (formData: FormDataTypes) => {
+
+        await fetch({ 
             url: "login", 
             method: "post", 
             data: { 
@@ -22,15 +20,23 @@ const { response, error, loading, fetch } = useAxios()
                     password: formData.password
                 },
         })
+        
+        if(response && !error) {
+            console.log(response)
+            
+            handleSetUser(response.data.id)
+        }
     }
-
-    console.log(response, loading, error)
+    const handleSetUser = (id: number) => {
+        alert(response?.data.message)
+        sessionStorage.setItem("id", id.toString())
+    }
 
     return (
         <>
         <div className="form">
             <h1> Login </h1>
-            {error  ? <p className="login-error-message">{error.response?.statusText }</p> : null}   
+            {error ? <p className="login-error-message">{error.response?.statusText }</p> : null}   
             <div className="form-group">
                 
                 <input type="text" placeholder="email" {...register("email", { required: true})} />  
