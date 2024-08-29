@@ -75,6 +75,7 @@ label{
 }
 #check{
     width: 5%;
+    cursor: pointer;
 }
 .login-spinner {
     display: flex;

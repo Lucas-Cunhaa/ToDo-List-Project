@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import validator from 'validator'
+import useAxios from "../hooks/useAxios";
 import "../Css/form.css";
 
 interface FormData {
@@ -10,14 +11,24 @@ interface FormData {
 }
 
 const Form = () => {
+  const { response, error, loading, fetch } = useAxios();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = (formData: FormData) => {
+    fetch({
+      url: "register",
+      method: "post", 
+      data: {
+          username : formData.username, 
+          email: formData.email, 
+          password: formData.password
+          }, 
+    })
   };
 
   return (
@@ -25,7 +36,7 @@ const Form = () => {
       <div className="form">
       <h1> Create Account</h1>
         <div className="form-group">
-
+        {error ? <p className="login-error-message">{error.response?.statusText }</p> : null}
           <input
             type="email"
             className={errors?.username && "input-error"}
