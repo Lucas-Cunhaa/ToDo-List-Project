@@ -1,0 +1,10 @@
+.responseMessage{
+    width: 100%;
+    color: black;
+}
+.response-ok{
+    background-color: aquamarine;
+}
+.response-error{
+    background-color: rgb(218, 51, 51);
+}

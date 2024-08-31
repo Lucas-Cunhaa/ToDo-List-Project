@@ -4,6 +4,7 @@ import "../Css/form.css";
 import useAxios from "../hooks/useAxios"
 import { FormDataTypes } from "../interface/types";
 import Spinner from "./SpinnerLoader";
+import ResponseMessage from "./ResponseMessage";
 const FormLogin =  () => {
 
     const { response, error, loading, fetch } = useAxios();
@@ -23,12 +24,11 @@ const FormLogin =  () => {
         
         if(response && !error) {
             console.log(response)
-            
             handleSetUser(response.data.id)
         }
     }
     const handleSetUser = (id: number) => {
-        alert(response?.data.message)
+        
         sessionStorage.setItem("id", id.toString())
     }
 
@@ -36,9 +36,9 @@ const FormLogin =  () => {
         <>
         <div className="form">
             <h1> Login </h1>
-            {error ? <p className="login-error-message">{error.response?.statusText }</p> : null}   
+            {error ? <p className="login-error-message">{}</p> : null}   
             <div className="form-group">
-                
+            <ResponseMessage  messageError={error?.response?.statusText} messageOk={response?.data.message} /> 
                 <input type="text" placeholder="email" {...register("email", { required: true})} />  
             </div>
             <div className="form-group">
