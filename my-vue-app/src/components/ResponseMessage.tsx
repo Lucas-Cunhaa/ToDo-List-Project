@@ -12,11 +12,11 @@ const ResponseMessage = ({ messageError, messageOk }: MessageProps) => {
 
   useEffect(() => {
     const messageToShow = messageOk || messageError;
-
+    
     if (messageToShow) {
       const timeout = setTimeout(() => {
         setDisplayMessage(messageToShow);
-        setDisplayClass(messageOk ? "response-ok" : "response-error");
+        setDisplayClass(messageOk ? "message response-ok" : "message response-error");
       }, 500);
 
       return () => clearTimeout(timeout);
@@ -30,7 +30,7 @@ const ResponseMessage = ({ messageError, messageOk }: MessageProps) => {
     <>
       {displayMessage && (
         <div className={displayClass}>
-          <h2>{displayMessage}</h2>
+          <h2 className="message-text">{displayMessage}</h2>
         </div>
       )}
     </>

@@ -35,21 +35,24 @@ const FormLogin =  () => {
     return (
         <>
         <div className="form">
-            <h1> Login </h1>
-            {error ? <p className="login-error-message">{}</p> : null}   
+            <h1> Login </h1> 
+            <br></br><ResponseMessage  messageError={error?.response?.statusText} messageOk={response?.data.message} />
             <div className="form-group">
-            <ResponseMessage  messageError={error?.response?.statusText} messageOk={response?.data.message} /> 
+            
                 <input type="text" placeholder="email" {...register("email", { required: true})} />  
             </div>
             <div className="form-group">
                 
                 <input type="password" placeholder="Password" {...register("password", { required: true})}/>
             </div>
+           
             <div className="form-group">
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> Login </strong> </button>
             </div>
             <br></br>
             <div className="login-spinner"> <Spinner showSpinner={loading} /> </div>
+
+            
         </div>
         </>
     )

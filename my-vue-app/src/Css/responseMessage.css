@@ -1,10 +1,18 @@
-.responseMessage{
+.message{
+    display: flex;
+    align-items: center;
     width: 100%;
-    color: black;
+    border-radius: 5px;
+    height: 35px;
+    color: aliceblue;
+    }
+.message-text{
+    font-size: 25px;
+    font-weight: 400;
 }
 .response-ok{
-    background-color: aquamarine;
-}
+    background-color: var(--page-default-color);
+}   
 .response-error{
     background-color: rgb(218, 51, 51);
 }
