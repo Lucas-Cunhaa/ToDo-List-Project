@@ -1,16 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useForm } from "react-hook-form";
 import "../Css/form.css";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { FormDataTypes } from "../interface/types"
+import { useEffect } from "react";
 import useAxios from "../hooks/useAxios"
-import { FormDataTypes } from "../interface/types";
 import Spinner from "./SpinnerLoader";
 import ResponseMessage from "./ResponseMessage";
+
 const FormLogin =  () => {
 
-    const { response, error, loading, fetch } = useAxios();
+  const { response, error, loading, fetch } = useAxios()
+  const {register, handleSubmit,} = useForm<FormDataTypes>();
+  const navigate = useNavigate()
 
-    const {register, handleSubmit,} = useForm<FormDataTypes>();
-    
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); 
+      handleSubmit(onSubmit)(); 
+    }
+  };
     const onSubmit =  async (formData: FormDataTypes) => {
 
         await fetch({ 
@@ -21,20 +30,24 @@ const FormLogin =  () => {
                     password: formData.password
                 },
         })
-        
-        if(response && !error) {
-            console.log(response)
-            handleSetUser(response.data.id)
-        }
     }
     const handleSetUser = (id: number) => {
-        
         sessionStorage.setItem("id", id.toString())
     }
+    useEffect(() => {
+        if(response) {
+            handleSetUser(response.data.dataResponse.id)
+            const timeout = setTimeout(() => navigate("/home")
+            , 1500)
+            
+            return () => clearTimeout(timeout)
+        }
+       
+    }, [navigate, response]);
 
     return (
         <>
-        <div className="form">
+        <div className="form" >
             <h1> Login </h1> 
             <br></br><ResponseMessage  messageError={error?.response?.statusText} messageOk={response?.data.message} />
             <div className="form-group">
@@ -46,8 +59,8 @@ const FormLogin =  () => {
                 <input type="password" placeholder="Password" {...register("password", { required: true})}/>
             </div>
            
-            <div className="form-group">
-                <button className="submit-button" onClick={() => handleSubmit(onSubmit)()}> <strong> Login </strong> </button>
+            <div className="form-group" onKeyDown={() => handleKeyDown}>
+                <button className="submit-button" onClick={() => handleSubmit(onSubmit)()} onKeyDown={() => handleKeyDown}> <strong> Login </strong> </button>
             </div>
             <br></br>
             <div className="login-spinner"> <Spinner showSpinner={loading} /> </div>
