@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import "../Css/list.css";
+import useAxios from "../hooks/useAxios";
 
 interface List {
   id: number;
@@ -7,53 +9,45 @@ interface List {
 }
 
 const Lists = () => {
-  const lists: List[] = [
-    {
-      id: 1,
-      title: "Law course",
-      description: "Law course homework's",
-    },
-    {
-      id: 2,
-      title: "Mathematic",
-      description: "Mathematic homework's",
-    },
-    {
-      id: 3,
-      title: "Personal Project",
-      description: "Personal Project tasks to do",
-    },
-    {
-      id: 4,
-      title: "Python",
-      description: "Mr's Dalton tasks",
-    },
-  ];
+  const { response, error,  fetch,  } = useAxios();
+  const [lists, setLists] = useState<List[]>([]);
 
-  const isPar = (id: number) => {
-    if (id % 2 === 0) {
-      return true;
-    } else {
-      return false;
+  const handleGetTasks = async () => {
+    const id = sessionStorage.getItem("id");
+    await fetch({
+      url: "home",
+      method: "get",
+      params: {
+        id: id
+      }
+    });
+    console.log(response, error)
+    if (response?.data?.dataResponse) {
+      setLists(response.data.dataResponse);
     }
   };
+
+  const isPar = (id: number) => id % 2 === 0;
+
+  useEffect(() => {
+    handleGetTasks();
+  }, []); 
+
   return (
     <>
-      {lists.map(({ id, title, description }: List) => (
+      {lists.map(({ id, title, description }) => (
         <div key={id}>
-          {isPar(id) && <div className="list-section background-gray">
-            <div className="list-section" key={id}>
-            <h2 className="list-name">{title}</h2>
-            <h3 className="list-description">{description}</h3>
-          </div>
-           </div>
-           }
-           {!isPar(id) && <div className="list-section" key={id}>
-            <h2 className="list-name">{title}</h2>
-            <h3 className="list-description">{description}</h3>
-          </div> 
-          }
-         
+          {isPar(id) ? (
+            <div className="list-section background-gray">
+              <h2 className="list-name">{title}</h2>
+              <h3 className="list-description">{description}</h3>
+            </div>
+          ) : (
+            <div className="list-section">
+              <h2 className="list-name">{title}</h2>
+              <h3 className="list-description">{description}</h3>
+            </div>
+          )}
         </div>
       ))}
     </>

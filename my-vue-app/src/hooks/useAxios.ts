@@ -15,7 +15,8 @@ const useAxios = () => {
                 url,
                 method,
                 data,
-                params,
+                params
+               
             })
             setResponse(result.data) 
         } catch (err) {
