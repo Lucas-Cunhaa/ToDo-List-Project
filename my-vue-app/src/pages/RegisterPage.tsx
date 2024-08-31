@@ -1,7 +1,7 @@
 
 import Form from "../components/Form";
 import "../Css/formPage.css"
-import NavBar from "../components/NavBar";
+
 
 const RegisterForm = () => {
     return (
@@ -21,9 +21,7 @@ const RegisterForm = () => {
             <Form>
             
             </Form>
-            <div className="navBarRegister" > 
-                <NavBar link="/"> Alredy have an account ? Log in </NavBar>
-            </div>
+
            
             </div>
         </div>

@@ -1,17 +1,22 @@
+import "../Css/form.css";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import validator from 'validator'
 import useAxios from "../hooks/useAxios";
-import "../Css/form.css";
-
+import Spinner from "./SpinnerLoader";
+import ResponseMessage from "./ResponseMessage";
+import NavBar from "./NavBar";
 interface FormData {
     username : string , 
     email: string , 
     password : string , 
-    checkBox : string 
+    checkBox : boolean
 }
 
 const Form = () => {
   const { response, error, loading, fetch } = useAxios();
+  const navigate = useNavigate()
 
   const {
     register,
@@ -19,24 +24,32 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (formData: FormData) => {
-    fetch({
-      url: "register",
-      method: "post", 
-      data: {
-          username : formData.username, 
-          email: formData.email, 
-          password: formData.password
-          }, 
+  const onSubmit =  async (formData: FormData) => {
+    await fetch({ 
+        url: "register", 
+        method: "post", 
+        data: { 
+                email: formData.email, 
+                username: formData.username,
+                password: formData.password
+            },
     })
-  };
-
+}
+  useEffect(() => {
+    if(response) {
+        const timeout = setTimeout(() => navigate("/")
+        , 1200)
+      
+        return () => clearTimeout(timeout)
+  }
+ 
+}, [navigate, response]);
   return (
     <>
       <div className="form">
       <h1> Create Account</h1>
         <div className="form-group">
-        {error ? <p className="login-error-message">{error.response?.statusText }</p> : null}
+        <ResponseMessage  messageError={error?.response?.statusText} messageOk={response?.data.message} /> 
           <input
             type="email"
             className={errors?.username && "input-error"}
@@ -103,6 +116,15 @@ const Form = () => {
             <strong> Create Account  </strong>{" "}
           </button>
         </div>
+        <br></br>
+        <div className="navBar-register" > 
+            <NavBar link="/"> Alredy have an account ? Log in </NavBar>
+        </div>
+        
+        <div className="spinner" > 
+            <Spinner showSpinner={loading} />
+        </div>
+        
       </div>
     </>
   );

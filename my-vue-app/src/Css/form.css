@@ -80,17 +80,19 @@ label{
     width: 5%;
     cursor: pointer;
 }
-.login-spinner {
+.spinner {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left : 10px ;
 }
-.login-error-message{
+.login-error-message {
     font-weight: 600;
     font-size : 20 px;
     color: red;
 }
-
+.navBar-register{
+    margin-bottom: 20px;
+}
 
 

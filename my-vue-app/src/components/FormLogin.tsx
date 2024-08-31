@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useAxios from "../hooks/useAxios"
 import Spinner from "./SpinnerLoader";
 import ResponseMessage from "./ResponseMessage";
+import NavBar from "./NavBar";
 
 const FormLogin =  () => {
 
@@ -21,7 +22,6 @@ const FormLogin =  () => {
     }
   };
     const onSubmit =  async (formData: FormDataTypes) => {
-
         await fetch({ 
             url: "login", 
             method: "post", 
@@ -63,6 +63,9 @@ const FormLogin =  () => {
                 <button className="submit-button" onClick={() => handleSubmit(onSubmit)()} onKeyDown={() => handleKeyDown}> <strong> Login </strong> </button>
             </div>
             <br></br>
+            <div className="navBar-login" > 
+                         <NavBar link='register'> Do not have an account yet? Sign Up </NavBar>
+            </div>
             <div className="login-spinner"> <Spinner showSpinner={loading} /> </div>
 
             

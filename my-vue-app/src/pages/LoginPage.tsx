@@ -1,7 +1,5 @@
 import FormLogin from "../components/FormLogin"
 import "../Css/formPage.css";
-import NavBar from "../components/NavBar";
-
 const LoginPage = () => {
     return (
         <> 
@@ -21,13 +19,7 @@ const LoginPage = () => {
                 
                 </FormLogin>
                 
-                        <div className="navBarLogin" > 
-                         <NavBar link='register'> Do not have an account yet? Sign Up </NavBar>
-                         <NavBar link='home'> Do not have an account yet? Sign Up </NavBar>
-                         <NavBar link='toDo'> Do not have an account yet? Sign Up </NavBar>
-                        </div>
-                          
-                
+
             </div>
             
         </div>
