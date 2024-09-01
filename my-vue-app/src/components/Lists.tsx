@@ -1,5 +1,6 @@
 import "../Css/list.css";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 
 interface List {
@@ -10,7 +11,9 @@ interface List {
 
 const Lists = () => {
   const { response, loading, fetch } = useAxios();
-  const handleGetTasks = async () => {
+  const navigate = useNavigate()
+
+  const handleGetLists = async () => {
     const id = sessionStorage.getItem("id");
     await fetch({
       url: "home",
@@ -20,10 +23,15 @@ const Lists = () => {
       },
     });
   };
+
+  const handleGetTasks = (id : number) => {
+    sessionStorage.setItem("list_id", id.toString())
+    navigate("/toDo")
+  }
   const isPar = (id: number) => id % 2 === 0;
 
   useEffect(() => {
-    handleGetTasks();
+    handleGetLists();
   }, []);
 
 if(loading) {
@@ -33,7 +41,7 @@ if(loading) {
     <>
       {
         response?.data.dataResponse.map(({ id, title, description } : List) => (
-          <div key={id}>
+          <div key={id} onClick={() => {handleGetTasks(id)} }>
             {isPar(id) ? (
               <div className="list-section background-gray">
                 <h2 className="list-name">{title}</h2>

@@ -31,9 +31,11 @@ const FormLogin =  () => {
                 },
         })
     }
+
     const handleSetUser = (id: number) => {
         sessionStorage.setItem("id", id.toString())
     }
+    
     useEffect(() => {
         if(response) {
             handleSetUser(response.data.dataResponse.id)

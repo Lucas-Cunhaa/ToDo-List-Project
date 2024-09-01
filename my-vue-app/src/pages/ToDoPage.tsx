@@ -1,6 +1,6 @@
+import "../Css/toDoPage.css";
 import TopBar from "../components/TopBar";
 import SideBar from "../components/SideBar";
-import "../Css/toDoPage.css";
 import ToDoComponent from "../components/toDos";
 const ToDoPage = () => {
 
