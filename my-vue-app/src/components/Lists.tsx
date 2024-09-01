@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "../Css/list.css";
+import { useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 
 interface List {
@@ -9,47 +9,45 @@ interface List {
 }
 
 const Lists = () => {
-  const { response, error,  fetch,  } = useAxios();
-  const [lists, setLists] = useState<List[]>([]);
-
+  const { response, loading, fetch } = useAxios();
   const handleGetTasks = async () => {
     const id = sessionStorage.getItem("id");
     await fetch({
       url: "home",
       method: "get",
       params: {
-        id: id
-      }
+        id: id,
+      },
     });
-    console.log(response, error)
-    if (response?.data?.dataResponse) {
-      setLists(response.data.dataResponse);
-    }
   };
-
   const isPar = (id: number) => id % 2 === 0;
 
   useEffect(() => {
     handleGetTasks();
-  }, []); 
+  }, []);
 
+if(loading) {
+    return 
+  }
   return (
     <>
-      {lists.map(({ id, title, description }) => (
-        <div key={id}>
-          {isPar(id) ? (
-            <div className="list-section background-gray">
-              <h2 className="list-name">{title}</h2>
-              <h3 className="list-description">{description}</h3>
-            </div>
-          ) : (
-            <div className="list-section">
-              <h2 className="list-name">{title}</h2>
-              <h3 className="list-description">{description}</h3>
-            </div>
-          )}
-        </div>
-      ))}
+      {
+        response?.data.dataResponse.map(({ id, title, description } : List) => (
+          <div key={id}>
+            {isPar(id) ? (
+              <div className="list-section background-gray">
+                <h2 className="list-name">{title}</h2>
+                <h3 className="list-description">{description}</h3>
+              </div>
+            ) : (
+              <div className="list-section">
+                <h2 className="list-name">{title}</h2>
+                <h3 className="list-description">{description}</h3>
+              </div>
+            )}
+          </div>
+        ))
+        }
     </>
   );
 };
