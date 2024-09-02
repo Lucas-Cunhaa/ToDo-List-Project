@@ -1,5 +1,4 @@
 import "../Css/toDoComponent.css";
-import { useState } from "react";
 import { useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 
@@ -15,37 +14,42 @@ const ToDoComponent = () => {
 
   const {response, loading, fetch} = useAxios()
 
-  const [tasks, setTasks] = useState<Task[]>([]);
-
   const handleGetTasks = async () => {
-    //const list_id = sessionStorage.getItem("list_id");
+    const list_id = sessionStorage.getItem("list_id");
     await fetch({
       url: "tasks",
       method: "get",
       params: {
-        id: 2,
+        id: list_id,
       },
     });
-  };
-
+  };  
+  
   useEffect(() => {
     handleGetTasks();
   }, []);
 
+  const handleChange = async (id: number, newState: string) => {
+    await fetch({
+      url: "tasks",
+      method: "put",
+      data : {
+        state: newState
+      },
+      params: {
+        id: id,
+      },
+    });
+    handleGetTasks()
+  }; 
 
-  const handleChange = (id: number, newState: string) => {
-    setTasks(tasks.map(task => task.id === id ? { ...task, state: newState } : task));
-  };
 
-  if(loading) {
-    return
-  } 
-  
   return (
     <div className="all-tasks">
       <div className="to-do-group"> 
         <h2 className="group-title to-do-h2">To Do</h2>
-      {response?.data.dataResponse.map(({ id, title, description, state, member }: Task) => (
+      {!loading && 
+      response?.data.dataResponse.map(({ id, title, description, state, member }: Task) => (
          <div key={id} > 
          {state.toLowerCase() === "todo" && (
             <div className="task-group to-do">
@@ -125,7 +129,8 @@ const ToDoComponent = () => {
   </div>
     <div className="doing-group">
       <h2 className="group-title doing-h2">Doing</h2>
-      {response?.data.dataResponse.map(({ id, title, description, state, member } : Task) => (
+      {!loading && 
+      response?.data.dataResponse.map(({ id, title, description, state, member } : Task) => (
         <div key={id} > 
          {state.toLowerCase() === "doing" && (
             <div className="task-group doing">
@@ -205,7 +210,8 @@ const ToDoComponent = () => {
    </div>
    <div className="done-group"> 
    <h2 className="group-title done-h2">Done</h2>
-      {response?.data.dataResponse.map(({ id, title, description, state, member } : Task) => (
+      {!loading && 
+      response?.data.dataResponse.map(({ id, title, description, state, member } : Task) => (
         <div key={id}>
           {state.toLowerCase() === "done" && (
             <div className="task-group done">

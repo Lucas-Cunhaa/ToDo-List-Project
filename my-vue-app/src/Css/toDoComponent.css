@@ -39,22 +39,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 30px solid rgb(221, 221, 221);
     margin-left: 10px;
 }
 .doing-group{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 30px solid rgb(221, 221, 221);
     margin-left: 10px;
 }
 .done-group{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 30px solid rgb(221, 221, 221);
-
     margin-left: 10px;
 }
 .to-do{

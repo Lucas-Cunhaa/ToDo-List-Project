@@ -27,6 +27,7 @@ const Lists = () => {
   const handleGetTasks = (id : number) => {
     sessionStorage.setItem("list_id", id.toString())
     navigate("/toDo")
+    navigate(0)
   }
   const isPar = (id: number) => id % 2 === 0;
 
