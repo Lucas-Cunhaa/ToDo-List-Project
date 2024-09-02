@@ -1,5 +1,5 @@
 import "../Css/toDoComponent.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 
 interface Task {
@@ -52,9 +52,10 @@ const TaskGroup = ({ title, tasks, handleChange }: { title: string, tasks: Task[
 const ToDoComponent = () => {
 
   const {response, loading, fetch} = useAxios();
-  const [tasks, setTasks] = useState<Task[]>([]);
+ 
 
   const handleGetTasks = async () => {
+    
     const list_id = sessionStorage.getItem("list_id");
      await fetch({
       url: "tasks",
@@ -63,7 +64,6 @@ const ToDoComponent = () => {
         id: list_id,
       },
     });
-    setTasks(response?.data.dataResponse || []);
   };  
   
   useEffect(() => {
@@ -82,23 +82,20 @@ const ToDoComponent = () => {
       },
     });
     
-    // Atualizar o estado local após a alteração
-    setTasks(prevTasks => 
-      prevTasks.map(task => 
-        task.id === id ? { ...task, state: newState } : task
-      )
-    );
+    handleGetTasks()
   };
 
   if (loading) {
+   
     return <div>Loading...</div>;
   }
+  const tasks = response?.data.dataResponse || []
 
   return (
     <div className="all-tasks">
-      <TaskGroup title="To Do" tasks={tasks.filter((task) => task.state.toLowerCase() === "todo")} handleChange={handleChange} />
-      <TaskGroup title="Doing" tasks={tasks.filter((task) => task.state.toLowerCase() === "doing")} handleChange={handleChange} />
-      <TaskGroup title="Done" tasks={tasks.filter((task) => task.state.toLowerCase() === "done")} handleChange={handleChange} />
+      <TaskGroup title="To Do" tasks={tasks.filter((task: { state: string; }) => task.state.toLowerCase() === "todo")} handleChange={handleChange} />
+      <TaskGroup title="Doing" tasks={tasks.filter((task: { state: string; }) => task.state.toLowerCase() === "doing")} handleChange={handleChange} />
+      <TaskGroup title="Done" tasks={tasks.filter((task: { state: string; }) => task.state.toLowerCase() === "done")} handleChange={handleChange} />
     </div>
   );
 };

@@ -18,7 +18,7 @@
   }
   
   .task-group {
-    background-color: #f66c0e0f;
+    background-color: #943e051f;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -34,7 +34,7 @@
     font-size: 18px;
     font-weight: 600;
     background-color: #ddd;
-    width: 100%;
+    width: 440px;
     text-align: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
   }
@@ -103,7 +103,7 @@
   
   .to-do-select-state {
     appearance: none;
-    background-color: #f66c0e0f;
+    background-color: #943e051f;
     border: 2px solid #ddd;
     padding: 5px 10px 5px 30px;
     font-size: 16px;
@@ -129,7 +129,7 @@
   /* Estilos de Ícones e Interações */
   .paper-svg,
   .member-svg {
-    background-color: #fff;
+    background-color: #ff7f2902;
   }
   
   .delete-small-svg {
