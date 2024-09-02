@@ -1,155 +1,145 @@
-*{
-    margin : 0; 
-    padding : 0; 
-    box-sizing: border-box;  
-}
-:root {
-    --page-default-color : rgb(18, 218, 158);
-    --gray-default-color : rgb(170, 170, 170);
-} 
-.task-group{
-    background-color: #F66C0E0F ;
+/* Estilos Globais e Variáveis */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --page-default-color: rgb(18, 218, 158);
+    --gray-default-color: rgb(170, 170, 170);
+  }
+  
+  /* Estilos Gerais dos Grupos de Tarefas */
+  .all-tasks {
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    margin: 20px 20px;
-    justify-content: space-between;
-    border-radius: 5px 5px 5px 5px;
-    color: rgb(0, 0, 0);
-    width: 400px;
-    height: 150px;
-}
-.all-tasks{
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     margin-top: 25px;
-}
-
-.group-title{
-    color: #000000;
+  }
+  
+  .task-group {
+    background-color: #f66c0e0f;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 20px;
+    border-radius: 5px;
+    color: #000;
+    width: 400px;
+    height: 150px;
+  }
+  
+  .group-title {
+    color: #000;
     font-size: 18px;
     font-weight: 600;
-    background-color: rgb(221, 221, 221);
-    align-items: center;
+    background-color: #ddd;
     width: 100%;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25), 0px 3px 3px rgba(0, 0, 0, 0.22);
-}
-.to-do-group{
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
+  }
+  
+  /* Estilos dos Grupos Específicos */
+  .todo-group,
+  .doing-group,
+  .done-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-left: 10px;
-}
-.doing-group{
+  }
+  
+  .todo {
+    border: 2px dashed black;
+  }
+  
+  .doing {
+    border: 2px dashed yellow;
+  }
+  
+  .done {
+    border: 2px dashed var(--page-default-color);
+  }
+  
+  /* Estilos de Tarefas */
+  .task-left,
+  .task-right {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-left: 10px;
-}
-.done-group{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 10px;
-}
-.to-do{
-    border: 2px  dashed black;
-}
-.doing{
-    border: 2px  dashed yellow;
-}
-.done{
-    border: 2px  dashed var(--page-default-color)
-}
-.task-left{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
     margin: 10px 20px;
     width: 50%;
-   
-}
-.task-title{
+  }
+  
+  .task-title {
     display: flex;
-    flex-direction: row;
     align-items: center;
-}
-.task-title-h2{
+  }
+  
+  .task-title-h2 {
     font-size: 16px;
     font-weight: 800;
-}
-.paper-svg{
-    background-color: rgb(255, 255, 255);
-}
-.task-description-h3{
+  }
+  
+  .task-description-h3 {
     font-size: 12px;
-}
-.task-right{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin: 0 10px;
-    width: 50%;
-}
-.task-member{
+  }
+  
+  .task-member {
     display: flex;
     align-items: center;
-}
-.task-member-h2{
+  }
+  
+  .task-member-h2 {
     font-size: 20px;
     font-weight: 800;
-}
-.to-do-select-state{
-    display: flex;
-    align-items: center;
-}
-.member-svg{
-    background-color: rgb(255, 255, 255);
-}
-.select-container {
-    position: relative;
-    display: inline-block;
   }
+  
+  /* Estilos do Select */
   .select-container {
     position: relative;
     display: inline-block;
-    width: 100%; 
+    width: 100%;
   }
+  
   .to-do-select-state {
-    appearance: none; 
-    -webkit-appearance: none; 
-    -moz-appearance: none; 
-    background-color: #F66C0E0F ;
-    border: 2px solid #ddd; 
-    padding: 5px 10px 5px 30px; 
-    font-size: 16px; 
-    color: #333; 
-    width: 80%; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: border-color 0.3s ease-in-out; 
-    background: url('../assets/rocket.svg') no-repeat 5px center, url('../assets/select.svg') no-repeat calc(100% - 5px) center, #fff; 
-    background-size: 20px 20px, 20px 20px; 
+    appearance: none;
+    background-color: #f66c0e0f;
+    border: 2px solid #ddd;
+    padding: 5px 10px 5px 30px;
+    font-size: 16px;
+    color: #333;
+    width: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out;
+    background: url('../assets/rocket.svg') no-repeat 5px center, url('../assets/select.svg') no-repeat calc(100% - 5px) center, #fff;
+    background-size: 20px;
     cursor: pointer;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 4px;
   }
   
   .to-do-select-state:focus {
-    border-color: var(--page-default-color)
+    border-color: var(--page-default-color);
   }
-  .select-group{
+  
+  .select-group {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    flex-direction: row;
   }
-  .delete-small-svg{
-    margin-top : -12px;
+  
+  /* Estilos de Ícones e Interações */
+  .paper-svg,
+  .member-svg {
+    background-color: #fff;
+  }
+  
+  .delete-small-svg {
+    margin-top: -12px;
     cursor: pointer;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
   }
+  
   .delete-small-svg:hover {
     background-color: red;
     border-radius: 10px;
-    transition: 1ms;
   }
- 
+  

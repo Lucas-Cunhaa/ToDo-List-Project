@@ -1,12 +1,32 @@
 import "../Css/topBar.css"
+import { useState, useEffect } from "react"
+import useAxios from "../hooks/useAxios"
 import FormAddToDo from "./FormAddTodo"
 import FormAddMember from "./FormAddMember"
-import { useState } from "react"
+
 
 const TopBar = () => {
 const [openFormToDo, setOpenFormToDo] = useState(false)
 
 const [openFormMember, setOpenFormMember] = useState(false)
+
+const {response, loading,  fetch} = useAxios()
+
+const handleGetListName = async () => {
+    const id = sessionStorage.getItem("list_id");
+    await fetch({
+      url: "home/name",
+      method: "get",
+      params: {
+        id: id,
+      },
+    });
+  };
+
+  useEffect(() => {
+    handleGetListName();
+  }, []);
+
 
 const closeFormAddTodo = () => {
     setOpenFormToDo(false)
@@ -16,10 +36,12 @@ const closeFormAddMember = () => {
     setOpenFormMember(false)
 }
 
+if (loading) return
+
 return (
     <div className="nav-top">
         <div className="nav-top-left">
-            <h1 className="list-title">List Name</h1>
+            <h1 className="list-title">{response?.data.dataResponse.title}</h1>
         </div>
         <div className="nav-top-right">
 
