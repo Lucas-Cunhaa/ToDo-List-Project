@@ -6,6 +6,7 @@
 :root {
     --page-default-color : rgb(18, 218, 158);
     --gray-default-color : rgb(170, 170, 170);
+    --gray-light: #ddd;
 } 
 .list-section{
     width: 100%;
@@ -21,7 +22,7 @@
     transition: 0.5s;
 }
 .background-gray {
-    background-color: var(--gray-default-color);
+    background-color: var(--gray-light);
 }
 .list-name{
     font-size: 11px;

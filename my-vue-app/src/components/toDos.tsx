@@ -1,6 +1,7 @@
 import "../Css/toDoComponent.css";
 import { useEffect } from "react";
 import useAxios from "../hooks/useAxios";
+import SpinnerBar from "./SpinnerBar";
 
 interface Task {
   id: number;
@@ -50,14 +51,11 @@ const TaskGroup = ({ title, tasks, handleChange }: { title: string, tasks: Task[
 );
 
 const ToDoComponent = () => {
-
-  const {response, loading, fetch} = useAxios();
- 
+  const { response, loading, fetch } = useAxios();
 
   const handleGetTasks = async () => {
-    
     const list_id = sessionStorage.getItem("list_id");
-     await fetch({
+    await fetch({
       url: "tasks",
       method: "get",
       params: {
@@ -68,6 +66,7 @@ const ToDoComponent = () => {
   
   useEffect(() => {
     handleGetTasks();
+    
   }, []);
   
   const handleChange = async (id: number, newState: string) => {
@@ -75,27 +74,24 @@ const ToDoComponent = () => {
       url: "tasks",
       method: "put",
       data: {
-        state: newState
+        state: newState,
       },
       params: {
         id: id,
       },
     });
-    
-    handleGetTasks()
+    await handleGetTasks();
   };
 
-  if (loading) {
-   
-    return <div>Loading...</div>;
-  }
+  if(loading) return <SpinnerBar showSpinner={loading} />
+  
   const tasks = response?.data.dataResponse || []
-
   return (
+    
     <div className="all-tasks">
-      <TaskGroup title="To Do" tasks={tasks.filter((task: { state: string; }) => task.state.toLowerCase() === "todo")} handleChange={handleChange} />
-      <TaskGroup title="Doing" tasks={tasks.filter((task: { state: string; }) => task.state.toLowerCase() === "doing")} handleChange={handleChange} />
-      <TaskGroup title="Done" tasks={tasks.filter((task: { state: string; }) => task.state.toLowerCase() === "done")} handleChange={handleChange} />
+      <TaskGroup title="To Do" tasks={tasks.filter((task: { state: string }) => task.state.toLowerCase() === "todo")} handleChange={handleChange} />
+      <TaskGroup title="Doing" tasks={tasks.filter((task: { state: string }) => task.state.toLowerCase() === "doing")} handleChange={handleChange} />
+      <TaskGroup title="Done" tasks={tasks.filter((task: { state: string }) => task.state.toLowerCase() === "done")} handleChange={handleChange} />
     </div>
   );
 };
