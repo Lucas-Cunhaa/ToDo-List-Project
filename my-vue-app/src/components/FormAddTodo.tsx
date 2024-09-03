@@ -110,6 +110,7 @@ const FormAddToDo = (props: FormAddToDoProps) => {
             className="addList-input"
             type="text"
             {...register("title", { required: true })}
+            maxLength={15}
           />
         </div>
 
@@ -141,6 +142,7 @@ const FormAddToDo = (props: FormAddToDoProps) => {
             className="addList-input"
             type="text"
             {...register("description")}
+            maxLength={20}
           />
         </div>
 

@@ -96,6 +96,7 @@ const FormAddList = (props: FormAddListProps) => {
             className="addList-input"
             type="text"
             {...register("title", { required: true })}
+            maxLength={20}
           />
         </div>
         <div className="addList-form-group">
@@ -111,6 +112,7 @@ const FormAddList = (props: FormAddListProps) => {
             className="addList-input"
             type="text"
             {...register("description")}
+            maxLength={30}
           />
         </div>
         <div className="addList-form-group">
