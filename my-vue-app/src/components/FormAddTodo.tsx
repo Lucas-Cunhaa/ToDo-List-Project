@@ -1,5 +1,10 @@
-import { useForm } from "react-hook-form";
 import "../Css/formAddList.css";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import useAxios from "../hooks/useAxios";
+import ResponseMessage from "./ResponseMessage";
 
 interface FormAddData {
   title: string;
@@ -12,6 +17,8 @@ interface FormAddToDoProps {
   closeForm: () => void;
 }
 const FormAddToDo = (props: FormAddToDoProps) => {
+  const [response, setResponse] = useState<AxiosResponse>();
+
   const members: string[] = [
     "Lucas",
     "Joao Neto",
@@ -20,18 +27,40 @@ const FormAddToDo = (props: FormAddToDoProps) => {
     "Pedro",
     "Joao Victor",
   ];
-  const progress: string[] = ["To Do", "Doing", "Done"];
+  const progress: string[] = ["ToDo", "Doing", "Done"];
 
   const { register, handleSubmit } = useForm<FormAddData>();
+  const { error, fetch } = useAxios();
+  const navigate = useNavigate();
 
-  const onSubmit = (data: FormAddData) => {
-    console.log(data);
+  const onSubmit = async (formData: FormAddData) => {
+    console.log(formData);
+    const list_id = sessionStorage.getItem("list_id");
+    const data = await fetch({
+      url: "tasks",
+      method: "post",
+      data: {
+        title: formData.title,
+        description: formData.description,
+        state: formData.progress,
+        list_id: list_id,
+      },
+    });
+    setResponse(data);
   };
+
+  useEffect(() => {
+    if (response) {
+      const timeout = setTimeout(() => navigate(0), 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [navigate, response]);
 
   const memberOptions = (members: string[]) => {
     return members.map((member: string, index: number) => {
       return (
-        <option key={index} value={index}>
+        <option key={index} value={member}>
           {member}
         </option>
       );
@@ -40,12 +69,13 @@ const FormAddToDo = (props: FormAddToDoProps) => {
   const progressOptions = (progress: string[]) => {
     return progress.map((state: string, index: number) => {
       return (
-        <option key={index} value={index}>
+        <option key={index} value={state}>
           {state}
         </option>
       );
     });
   };
+
   return (
     <>
       <div className="form-add">
@@ -82,24 +112,29 @@ const FormAddToDo = (props: FormAddToDoProps) => {
             {...register("title", { required: true })}
           />
         </div>
+
         <div className="addList-form-group">
           <label className="formAdd-label-group"> Progress </label>
-          <select id="progress" className="custom-select" name="options">
+          <select
+            id="progress"
+            className="custom-select"
+            {...register("progress", { required: true })}
+          >
             {progressOptions(progress)}
-            <input
-              className="addList-input"
-              type=""
-              {...register("progress")}
-            />
           </select>
         </div>
+
         <div className="addList-form-group">
           <label className="formAdd-label-group"> Member </label>
-          <select id="member" className="custom-select" name="options">
+          <select
+            id="member"
+            className="custom-select"
+            {...register("member", { required: true })}
+          >
             {memberOptions(members)}
-            <input className="addList-input" type="" {...register("member")} />
           </select>
         </div>
+
         <div className="addList-form-group">
           <label className="formAdd-label-group"> Description </label>
           <input
@@ -108,12 +143,12 @@ const FormAddToDo = (props: FormAddToDoProps) => {
             {...register("description")}
           />
         </div>
+
         <div className="addList-form-group">
           <button
             className="add-button"
             onClick={() => handleSubmit(onSubmit)()}
           >
-            {" "}
             <svg
               width="18"
               height="15"
@@ -126,10 +161,14 @@ const FormAddToDo = (props: FormAddToDoProps) => {
                 fill="white"
               />
             </svg>
-            <strong> Save </strong>{" "}
+            <strong> Save </strong>
           </button>
+          <ResponseMessage
+            messageError={error?.response?.statusText}
+            messageOk={response?.data.message}
+          />
         </div>
-        <br></br>
+        <br />
       </div>
     </>
   );

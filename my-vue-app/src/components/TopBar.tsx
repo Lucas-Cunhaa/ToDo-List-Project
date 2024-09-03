@@ -1,8 +1,10 @@
 import "../Css/topBar.css"
 import { useState, useEffect } from "react"
+import { AxiosResponse } from "axios"
 import useAxios from "../hooks/useAxios"
 import FormAddToDo from "./FormAddTodo"
 import FormAddMember from "./FormAddMember"
+
 
 
 const TopBar = () => {
@@ -10,17 +12,20 @@ const [openFormToDo, setOpenFormToDo] = useState(false)
 
 const [openFormMember, setOpenFormMember] = useState(false)
 
-const {response, loading,  fetch} = useAxios()
+const [response, setResponse] = useState<AxiosResponse>();
+
+const { loading,  fetch} = useAxios()
 
 const handleGetListName = async () => {
     const id = sessionStorage.getItem("list_id");
-    await fetch({
+    const data = await fetch({
       url: "home/name",
       method: "get",
       params: {
         id: id,
       },
     });
+    setResponse(data)
   };
 
   useEffect(() => {

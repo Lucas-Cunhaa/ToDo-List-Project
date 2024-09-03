@@ -28,7 +28,7 @@ const FormAddList = (props: FormAddListProps) => {
   ];
 
   const { register, handleSubmit } = useForm<FormAddData>();
-  const { fetch } = useAxios();
+  const { error, fetch } = useAxios();
   const navigate = useNavigate();
 
   const onSubmit = async (formData: FormAddData) => {
@@ -65,10 +65,7 @@ const FormAddList = (props: FormAddListProps) => {
 
   return (
     <>
-      <ResponseMessage
-        messageError={response?.statusText}
-        messageOk={response?.data.message}
-      />
+    
       <div className="form-add">
         <div className="form-add-top">
           <h1 className="form-add-h1">List</h1>
@@ -136,6 +133,10 @@ const FormAddList = (props: FormAddListProps) => {
             </svg>
             <strong> Save </strong>{" "}
           </button>
+          <ResponseMessage
+            messageError={error?.response?.statusText}
+            messageOk={response?.data.message}
+      />
         </div>
         <br></br>
       </div>
