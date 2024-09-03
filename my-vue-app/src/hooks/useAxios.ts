@@ -1,10 +1,9 @@
 import axiosInstance from "../helper/axiosInstance"
 import { useState } from "react"
 import { FormRequestTypes } from "../interface/types"
-import { AxiosError, AxiosResponse } from "axios"
+import { AxiosError } from "axios"
 
 const useAxios = () => {
-    const [response, setResponse] = useState<AxiosResponse| null>(null)
     const [error, setError] = useState<AxiosError>()
     const [loading, setLoading] = useState(false)
 
@@ -18,19 +17,19 @@ const useAxios = () => {
                 params
                
             })
-            setResponse(result.data) 
+           return result.data
+
         } catch (err) {
             console.log(err)
             if (err instanceof AxiosError) {
                 setError(err);
             } 
         } finally {
-            setTimeout( () => {setLoading(false)} , 1000)
-            
+            setTimeout( () => {setLoading(false)} , 1500)  
         }
     }
 
-    return { response, error, loading, fetch }
+    return { error, loading, fetch }
 }
 
 export default useAxios

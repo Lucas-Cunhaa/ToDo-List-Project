@@ -4,15 +4,14 @@ import "../Css/formAddList.css";
 interface FormAddData {
   title: string;
   member: string;
-  progress : string;
+  progress: string;
   description: string;
 }
 
 interface FormAddToDoProps {
-  closeForm : () => void
+  closeForm: () => void;
 }
-const FormAddToDo= ( props : FormAddToDoProps) => {
-
+const FormAddToDo = (props: FormAddToDoProps) => {
   const members: string[] = [
     "Lucas",
     "Joao Neto",
@@ -21,11 +20,7 @@ const FormAddToDo= ( props : FormAddToDoProps) => {
     "Pedro",
     "Joao Victor",
   ];
-  const progress : string[] = [
-    "To Do",
-    "Doing",
-    "Done"
-  ]
+  const progress: string[] = ["To Do", "Doing", "Done"];
 
   const { register, handleSubmit } = useForm<FormAddData>();
 
@@ -48,10 +43,9 @@ const FormAddToDo= ( props : FormAddToDoProps) => {
         <option key={index} value={index}>
           {state}
         </option>
-      )
-    }
-  )
-  }
+      );
+    });
+  };
   return (
     <>
       <div className="form-add">
@@ -59,7 +53,9 @@ const FormAddToDo= ( props : FormAddToDoProps) => {
           <h1 className="form-add-h1">To Do</h1>
           <button
             className="close-button"
-            onClick={()=> {props.closeForm()}}
+            onClick={() => {
+              props.closeForm();
+            }}
           ></button>
           <label className="label-button" onClick={() => props.closeForm()}>
             <svg
@@ -90,13 +86,17 @@ const FormAddToDo= ( props : FormAddToDoProps) => {
           <label className="formAdd-label-group"> Progress </label>
           <select id="progress" className="custom-select" name="options">
             {progressOptions(progress)}
-            <input className="addList-input" type="" {...register("progress")} />
+            <input
+              className="addList-input"
+              type=""
+              {...register("progress")}
+            />
           </select>
         </div>
         <div className="addList-form-group">
           <label className="formAdd-label-group"> Member </label>
           <select id="member" className="custom-select" name="options">
-             {memberOptions(members)}
+            {memberOptions(members)}
             <input className="addList-input" type="" {...register("member")} />
           </select>
         </div>

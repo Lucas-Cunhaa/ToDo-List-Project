@@ -1,5 +1,10 @@
-import { useForm } from "react-hook-form";
 import "../Css/formAddList.css";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
+import ResponseMessage from "./ResponseMessage";
+import { AxiosResponse } from "axios";
 
 interface FormAddData {
   title: string;
@@ -11,6 +16,8 @@ interface FormAddListProps {
 }
 
 const FormAddList = (props: FormAddListProps) => {
+  const [response, setResponse] = useState<AxiosResponse>();
+
   const members: string[] = [
     "Lucas",
     "Joao Neto",
@@ -21,9 +28,21 @@ const FormAddList = (props: FormAddListProps) => {
   ];
 
   const { register, handleSubmit } = useForm<FormAddData>();
+  const { fetch } = useAxios();
+  const navigate = useNavigate();
 
-  const onSubmit = (data: FormAddData) => {
-    console.log(data);
+  const onSubmit = async (formData: FormAddData) => {
+    const user_id = sessionStorage.getItem("id");
+    const data = await fetch({
+      url: "home",
+      method: "post",
+      data: {
+        title: formData.title,
+        description: formData.description,
+        user_id: user_id,
+      },
+    });
+    setResponse(data);
   };
 
   const memberOptions = (members: string[]) => {
@@ -36,8 +55,20 @@ const FormAddList = (props: FormAddListProps) => {
     });
   };
 
+  useEffect(() => {
+    if (response) {
+      const timeout = setTimeout(() => navigate(0), 1200);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [navigate, response]);
+
   return (
     <>
+      <ResponseMessage
+        messageError={response?.statusText}
+        messageOk={response?.data.message}
+      />
       <div className="form-add">
         <div className="form-add-top">
           <h1 className="form-add-h1">List</h1>

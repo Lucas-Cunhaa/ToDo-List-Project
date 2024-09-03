@@ -7,20 +7,23 @@ interface MessageProps {
 }
 
 const ResponseMessage = ({ messageError, messageOk }: MessageProps) => {
-  const [displayMessage, setDisplayMessage] = useState<string | undefined>(undefined);
+  const [displayMessage, setDisplayMessage] = useState<string | undefined>(
+    undefined
+  );
   const [displayClass, setDisplayClass] = useState<string>("");
 
   useEffect(() => {
     const messageToShow = messageOk || messageError;
-    
+
     if (messageToShow) {
       const timeout = setTimeout(() => {
         setDisplayMessage(messageToShow);
-        setDisplayClass(messageOk ? "message response-ok" : "message response-error");
+        setDisplayClass(
+          messageOk ? "message response-ok" : "message response-error"
+        );
       }, 500);
 
       return () => clearTimeout(timeout);
-
     } else {
       setDisplayClass("");
     }

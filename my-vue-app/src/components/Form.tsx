@@ -1,22 +1,26 @@
 import "../Css/form.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import validator from 'validator'
+import { useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import validator from "validator";
 import useAxios from "../hooks/useAxios";
 import Spinner from "./SpinnerLoader";
 import ResponseMessage from "./ResponseMessage";
 import NavBar from "./NavBar";
+
 interface FormData {
-    username : string , 
-    email: string , 
-    password : string , 
-    checkBox : boolean
+  username: string;
+  email: string;
+  password: string;
+  checkBox: boolean;
 }
 
 const Form = () => {
-  const { response, error, loading, fetch } = useAxios();
-  const navigate = useNavigate()
+  const [response, setResponse] = useState<AxiosResponse>();
+
+  const { error, loading, fetch } = useAxios();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,39 +28,41 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit =  async (formData: FormData) => {
-    await fetch({ 
-        url: "register", 
-        method: "post", 
-        data: { 
-                email: formData.email, 
-                username: formData.username,
-                password: formData.password
-            },
-    })
-}
+  const onSubmit = async (formData: FormData) => {
+    const data = await fetch({
+      url: "register",
+      method: "post",
+      data: {
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
+      },
+    });
+    setResponse(data);
+  };
   useEffect(() => {
-    if(response) {
-        const timeout = setTimeout(() => navigate("/")
-        , 1200)
-      
-        return () => clearTimeout(timeout)
-  }
- 
-}, [navigate, response]);
+    if (response) {
+      const timeout = setTimeout(() => navigate("/"), 1200);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [navigate, response]);
   return (
     <>
       <div className="form">
-      <h1> Create Account</h1>
+        <h1> Create Account</h1>
         <div className="form-group">
-        <ResponseMessage  messageError={error?.response?.statusText} messageOk={response?.data.message} /> 
+          <ResponseMessage
+            messageError={error?.response?.statusText}
+            messageOk={response?.data.message}
+          />
           <input
             type="email"
             className={errors?.username && "input-error"}
             placeholder="Email"
             {...register("email", {
               required: true,
-              validate: (value)  => {
+              validate: (value) => {
                 return validator.isEmail(value);
               },
             })}
@@ -70,7 +76,6 @@ const Form = () => {
         </div>
 
         <div className="form-group">
-          
           <input
             type="text"
             className={errors?.username && "input-error"}
@@ -83,7 +88,6 @@ const Form = () => {
         </div>
 
         <div className="form-group">
-         
           <input
             type="password"
             className={errors?.password && "input-error"}
@@ -96,35 +100,36 @@ const Form = () => {
         </div>
 
         <div className="form-group ">
-          <div className="checkbox-section"> 
-          <input
-            type="checkbox"
-            id="check"
-            {...register("checkBox", { required: true })}
-          />
-          <label> Confirm to the privacy terms </label> 
+          <div className="checkbox-section">
+            <input
+              type="checkbox"
+              id="check"
+              {...register("checkBox", { required: true })}
+            />
+            <label> Confirm to the privacy terms </label>
           </div>
           {errors?.checkBox?.type === "required" && (
             <p className="error-message">You must agree with the terms</p>
           )}
-          
         </div>
 
         <div className="form-group">
-          <button  className="submit-button" onClick={() => handleSubmit(onSubmit)()}>
+          <button
+            className="submit-button"
+            onClick={() => handleSubmit(onSubmit)()}
+          >
             {" "}
-            <strong> Create Account  </strong>{" "}
+            <strong> Create Account </strong>{" "}
           </button>
         </div>
         <br></br>
-        <div className="navBar-register" > 
-            <NavBar link="/"> Alredy have an account ? Log in </NavBar>
+        <div className="navBar-register">
+          <NavBar link="/"> Alredy have an account ? Log in </NavBar>
         </div>
-        
-        <div className="spinner" > 
-            <Spinner showSpinner={loading} />
+
+        <div className="spinner">
+          <Spinner showSpinner={loading} />
         </div>
-        
       </div>
     </>
   );

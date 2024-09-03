@@ -1,21 +1,18 @@
 import NavBar from "./NavBar";
 import "../Css/sideBar.css";
 import { useState } from "react";
-import FormAddList from "../components/FormAddList"
+import FormAddList from "../components/FormAddList";
 import Lists from "./Lists";
 
 const SideBar = () => {
-
   const [openForm, setOpenForm] = useState(false);
 
   const setFalse = () => {
-    setOpenForm(false)
-  }
+    setOpenForm(false);
+  };
 
   return (
-    <> 
-   
-     
+    <>
       <div className="sideBar">
         <div className="side-left">
           <svg
@@ -94,45 +91,41 @@ const SideBar = () => {
         <div className="side-right">
           <div className="side-right-top">
             <h1 className="side-bar-list">Lists</h1>
-            <button className="plus-button" onClick={() => setOpenForm(true) }>   </button>
-              <svg
-                className="plus-svg"
-                onClick={() => setOpenForm(true)}
-                width="30"
-                height="30"
-                viewBox="0 0 21 21"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.5 10.5H3.5"
-                  stroke="white"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M10.5 3.5V17.5"
-                  stroke="white"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                />
-              </svg>
-           
+            <button className="plus-button" onClick={() => setOpenForm(true)}>
+              {" "}
+            </button>
+            <svg
+              className="plus-svg"
+              onClick={() => setOpenForm(true)}
+              width="30"
+              height="30"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 10.5H3.5"
+                stroke="white"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <path
+                d="M10.5 3.5V17.5"
+                stroke="white"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+            </svg>
           </div>
-          
+
           <div className="task-list">
             <Lists />
           </div>
-
-   </div>
-
-          
-           { openForm && <FormAddList closeForm={setFalse}/>} 
-            
-          
         </div>
-      </>
-    
+
+        {openForm && <FormAddList closeForm={setFalse} />}
+      </div>
+    </>
   );
 };
 

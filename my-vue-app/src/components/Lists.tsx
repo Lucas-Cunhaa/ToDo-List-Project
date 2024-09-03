@@ -1,7 +1,9 @@
 import "../Css/list.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AxiosResponse } from "axios";
 import useAxios from "../hooks/useAxios";
+
 
 interface List {
   id: number;
@@ -10,27 +12,30 @@ interface List {
 }
 
 const Lists = () => {
-  const { response, loading, fetch } = useAxios();
+  const { loading, fetch } = useAxios();
   const [selectedListId, setSelectedListId] = useState<number | null>(null);
+  const [response, setResponse] = useState<AxiosResponse>();
 
   const navigate = useNavigate();
 
   const handleGetLists = async () => {
     const id = sessionStorage.getItem("id");
-    await fetch({
+    const data = await fetch({
       url: "home",
       method: "get",
       params: {
         id: id,
       },
     });
+
+    setResponse(data);
   };
 
-  const handleGetTasks = (id: number) => {
+  const handleGetTasks = async (id: number) => {
     sessionStorage.setItem("list_id", id.toString());
     setSelectedListId(id);
     navigate("/toDo");
-    navigate(0)
+    navigate(0);
   };
 
   useEffect(() => {
@@ -49,7 +54,9 @@ const Lists = () => {
           onClick={() => handleGetTasks(id)}
           className={`list-item ${id === selectedListId ? "selected" : ""}`}
         >
-          <div className={`list-section ${id % 2 === 0 ? "background-gray" : ""}`}>
+          <div
+            className={`list-section ${id % 2 === 0 ? "background-gray" : ""}`}
+          >
             <h2 className="list-name">{title}</h2>
             <h3 className="list-description">{description}</h3>
           </div>

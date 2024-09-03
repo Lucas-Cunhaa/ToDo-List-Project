@@ -1,23 +1,45 @@
-import { useForm } from "react-hook-form";
 import "../Css/formAddList.css";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
+import { AxiosResponse } from "axios";
 
 interface FormAddData {
-    email: string;
-    name:string;
+  email: string;
+  name: string;
 }
-interface FormAddMemberProps { 
-    closeForm: () => void
+interface FormAddMemberProps {
+  closeForm: () => void;
 }
 
-const FormAddMember = (props : FormAddMemberProps) => {
- 
+const FormAddMember = (props: FormAddMemberProps) => {
+  const [response, setResponse] = useState<AxiosResponse>();
   const { register, handleSubmit } = useForm<FormAddData>();
+  const { fetch } = useAxios();
+  const navigate = useNavigate();
 
-  const onSubmit = (data: FormAddData) => {
-    console.log(data);
+  const onSubmit = async (formData: FormAddData) => {
+    const data = await fetch({
+      url: "",
+      method: "post",
+      data: {
+        email: formData.email,
+        username: formData.email,
+        password: formData.name,
+      },
+    });
+    setResponse(data);
   };
 
-  
+  useEffect(() => {
+    if (response) {
+      const timeout = setTimeout(() => navigate(0), 1200);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [navigate, response]);
+
   return (
     <>
       <div className="form-add">
@@ -25,7 +47,9 @@ const FormAddMember = (props : FormAddMemberProps) => {
           <h1 className="form-add-h1">Invite people</h1>
           <button
             className="close-button"
-            onClick={()=> {console.log("JoaoNetoEGay")}}
+            onClick={() => {
+              console.log("JoaoNetoEGay");
+            }}
           ></button>
           <label className="label-button" onClick={() => props.closeForm()}>
             <svg
@@ -54,11 +78,7 @@ const FormAddMember = (props : FormAddMemberProps) => {
         </div>
         <div className="addList-form-group">
           <label className="formAdd-label-group"> Name </label>
-          <input
-            className="addList-input"
-            type="text"
-            {...register("name")}
-          />
+          <input className="addList-input" type="text" {...register("name")} />
         </div>
         <div className="addList-form-group">
           <button
@@ -66,11 +86,27 @@ const FormAddMember = (props : FormAddMemberProps) => {
             onClick={() => handleSubmit(onSubmit)()}
           >
             {" "}
-            <svg className="plus-button-svg" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.5 10.5H3.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            <path d="M10.5 3.5V17.5" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <svg
+              className="plus-button-svg"
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 10.5H3.5"
+                stroke="white"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <path
+                d="M10.5 3.5V17.5"
+                stroke="white"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
             </svg>
-
             <strong> Invite </strong>{" "}
           </button>
         </div>
