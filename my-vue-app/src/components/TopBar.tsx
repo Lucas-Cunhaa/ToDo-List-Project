@@ -1,8 +1,6 @@
 import "../Css/topBar.css"
-import { useState, useEffect } from "react"
-import { AxiosResponse } from "axios"
-import { useNavigate } from "react-router-dom"
-import useAxios from "../hooks/useAxios"
+import { useState, useContext } from "react"
+import { TaskContext } from "./useContext";
 import FormAddToDo from "./FormAddTodo"
 import FormAddMember from "./FormAddMember"
 
@@ -11,31 +9,7 @@ const [openFormToDo, setOpenFormToDo] = useState(false)
 
 const [openFormMember, setOpenFormMember] = useState(false)
 
-const [response, setResponse] = useState<AxiosResponse>();
-
-const { loading,  fetch} = useAxios()
-
-const navigate = useNavigate()
-
-const handleGetListName = async () => {
-    const id = sessionStorage.getItem("list_id");
-    const data = await fetch({
-      url: "home/name",
-      method: "get",
-      params: {
-        id: id,
-      },
-    });
-    setResponse(data)
-    navigate("/tasks")
-    
-  };
-
-  useEffect(() => {
-    handleGetListName();
-    
-  }, []);
-
+const {activeList} = useContext(TaskContext)
 
 const closeFormAddTodo = () => {
     setOpenFormToDo(false)
@@ -45,12 +19,10 @@ const closeFormAddMember = () => {
     setOpenFormMember(false)
 }
 
-if (loading) return
-
 return (
     <div className="nav-top">
         <div className="nav-top-left">
-            <h1 className="list-title">{response?.data.dataResponse.title}</h1>
+            <h1 className="list-title">{activeList.title}</h1>
         </div>
         <div className="nav-top-right">
 

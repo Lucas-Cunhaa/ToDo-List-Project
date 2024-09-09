@@ -9,17 +9,21 @@ type Task = {
     state: string;
     member?: string;
 }
+type List = {
+    id: number
+    title: string
+}
 interface TasksContextData {
     tasks: Array<Task>;
-    activeList: number; 
-    handleSetList: (id : number) => void; 
+    activeList:  List; 
+    handleSetList: (list: List) => void; 
     getAllTasks: () => void;
     
 }
 
 export const TaskContext = React.createContext<TasksContextData>({
     tasks: [], 
-    activeList: 1,
+    activeList: {id: 1, title: ""}, 
     handleSetList: () => {},
     getAllTasks: () => {}
     
@@ -31,14 +35,14 @@ export interface ITasksProviderProps {
 
 export const TaskProvider: React.FC<ITasksProviderProps> = ({ children }) => {
     const [tasks, setTask] = useState<Task[]>([])
-    const [activeList, setActiveList] = useState(1)
+    const [activeList, setActiveList] = useState<List>({id: 1, title: ""})
     const { fetch } = useAxios()
     const getAllTasks = async () => {
         const response = await fetch({
           url: "tasks",
           method: "get",
           params: {
-            id: activeList,
+            id: activeList.id,
           },
         });
         
@@ -50,9 +54,9 @@ export const TaskProvider: React.FC<ITasksProviderProps> = ({ children }) => {
     useEffect(() => {
         getAllTasks()
     }, [activeList])
-    
-    const handleSetList = (id: number) => {
-        setActiveList(id)
+
+    const handleSetList = (list: List) => {
+        setActiveList(list)
     }
     
     return(

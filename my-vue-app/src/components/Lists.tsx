@@ -31,8 +31,9 @@ const Lists = () => {
     setResponse(data);
   };
 
-  const handleGetTasks = (id: number) => {
-    handleSetList(id)
+  const handleGetTasks = (id: number, title: string) => {
+    const atualList = {id: id, title: title}
+    handleSetList(atualList)
     navigate("/tasks");
   };
 
@@ -49,8 +50,8 @@ const Lists = () => {
       {response?.data.dataResponse.map(({ id, title, description }: List) => (
         <div
           key={id}
-          onClick={() => handleGetTasks(id)}
-          className={`list-item ${id === activeList ? "selected" : ""}`}
+          onClick={() => handleGetTasks(id, title)}
+          className={`list-item ${id === activeList.id ? "selected" : ""}`}
         >
           <div
             className={`list-section ${id % 2 === 0 ? "background-gray" : ""}`}
