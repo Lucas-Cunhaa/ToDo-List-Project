@@ -13,7 +13,9 @@ interface List {
 
 const Lists = () => {
   const { loading, fetch } = useAxios();
+
   const [response, setResponse] = useState<AxiosResponse>();
+  
   const { activeList, handleSetList } = useContext(TaskContext)
 
   const navigate = useNavigate();
@@ -27,7 +29,6 @@ const Lists = () => {
         id: id,
       },
     });
-    console.log(data)
     setResponse(data);
   };
 

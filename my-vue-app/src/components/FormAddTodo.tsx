@@ -53,8 +53,8 @@ const FormAddToDo = (props: FormAddToDoProps) => {
 
   useEffect(() => {
     if (response) {
-      getAllTasks()
       props.closeForm()
+      getAllTasks()
     }
   }, [navigate, response, getAllTasks]);
 

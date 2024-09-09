@@ -1,8 +1,10 @@
 import "../Css/toDoComponent.css";
 import { useEffect, useContext } from "react";
+import { TaskContext } from "./useContext";
+import ResponseMessage from "./ResponseMessage";
 import useAxios from "../hooks/useAxios";
 import SpinnerBar from "./SpinnerBar";
-import { TaskContext } from "./useContext";
+
 
 interface Task {
   id: number;
@@ -16,10 +18,12 @@ const TaskGroup = ({
   title,
   tasks,
   handleChange,
+  handleDeleteTask
 }: {
   title: string;
   tasks: Task[];
   handleChange: (id: number, newState: string) => void;
+  handleDeleteTask: (id: number) => void;
 }) => (
   <div className={`${title.toLowerCase()}-group`}>
     <h2 className={`group-title ${title.toLowerCase()}-h2`}>{title}</h2>
@@ -68,6 +72,7 @@ const TaskGroup = ({
             </select>
             <svg
               className="delete-small-svg"
+              onClick={ () => {handleDeleteTask(id)} }
               width="12"
               height="12"
               viewBox="0 0 8 8"
@@ -108,7 +113,7 @@ const TaskGroup = ({
 );
 
 const ToDoComponent = () => {
-  const { loading, fetch } = useAxios();
+  const { loading, error, fetch } = useAxios();
   const { tasks, getAllTasks } = useContext(TaskContext)
 
   useEffect(() => {
@@ -129,6 +134,23 @@ const ToDoComponent = () => {
     getAllTasks();
   };
 
+  const handleDeleteTask = async (id: number) => {
+    const data = await fetch({
+      url: "tasks",
+      method: "delete",
+      params: {
+        id: id
+      },
+    });
+
+    if(data) {
+      console.log(data.response?.message)
+      getAllTasks();
+    }
+    
+  }
+
+
   if (loading) return <SpinnerBar showSpinner={loading} />;
   return (
     <div className="all-tasks">
@@ -138,6 +160,7 @@ const ToDoComponent = () => {
           (task: { state: string }) => task.state.toLowerCase() === "todo"
         )}
         handleChange={handleChange}
+        handleDeleteTask={handleDeleteTask}
       />
       <TaskGroup
         title="Doing"
@@ -145,6 +168,7 @@ const ToDoComponent = () => {
           (task: { state: string }) => task.state.toLowerCase() === "doing"
         )}
         handleChange={handleChange}
+        handleDeleteTask={handleDeleteTask}
       />
       <TaskGroup
         title="Done"
@@ -152,6 +176,11 @@ const ToDoComponent = () => {
           (task: { state: string }) => task.state.toLowerCase() === "done"
         )}
         handleChange={handleChange}
+        handleDeleteTask={handleDeleteTask}
+      />
+    <ResponseMessage
+            messageError={error?.response?.statusText}
+            messageOk={""}
       />
     </div>
   );
