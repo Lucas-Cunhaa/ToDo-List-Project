@@ -1,8 +1,9 @@
 import "../Css/formAddList.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AxiosResponse } from "axios";
+import { TaskContext } from "./useContext";
 import useAxios from "../hooks/useAxios";
 import ResponseMessage from "./ResponseMessage";
 
@@ -19,6 +20,7 @@ interface FormAddToDoProps {
 const FormAddToDo = (props: FormAddToDoProps) => {
   const [response, setResponse] = useState<AxiosResponse>();
 
+  const { activeList, getAllTasks } = useContext(TaskContext)
   const members: string[] = [
     "Lucas",
     "Joao Neto",
@@ -35,7 +37,7 @@ const FormAddToDo = (props: FormAddToDoProps) => {
 
   const onSubmit = async (formData: FormAddData) => {
     console.log(formData);
-    const list_id = sessionStorage.getItem("list_id");
+    const list_id = activeList.id
     const data = await fetch({
       url: "tasks",
       method: "post",
@@ -51,11 +53,10 @@ const FormAddToDo = (props: FormAddToDoProps) => {
 
   useEffect(() => {
     if (response) {
-      const timeout = setTimeout(() => navigate(0), 1000);
-
-      return () => clearTimeout(timeout);
+      getAllTasks()
+      props.closeForm()
     }
-  }, [navigate, response]);
+  }, [navigate, response, getAllTasks]);
 
   const memberOptions = (members: string[]) => {
     return members.map((member: string, index: number) => {
