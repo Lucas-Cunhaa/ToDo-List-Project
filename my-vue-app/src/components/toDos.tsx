@@ -1,8 +1,8 @@
 import "../Css/toDoComponent.css";
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import useAxios from "../hooks/useAxios";
 import SpinnerBar from "./SpinnerBar";
-import { AxiosResponse } from "axios";
+import { TaskContext } from "./useContext";
 
 interface Task {
   id: number;
@@ -109,22 +109,10 @@ const TaskGroup = ({
 
 const ToDoComponent = () => {
   const { loading, fetch } = useAxios();
-  const [response, setResponse] = useState<AxiosResponse>();
-
-  const handleGetTasks = async () => {
-    const list_id = sessionStorage.getItem("list_id");
-    const data = await fetch({
-      url: "tasks",
-      method: "get",
-      params: {
-        id: list_id,
-      },
-    });
-    setResponse(data);
-  };
+  const { tasks, getAllTasks } = useContext(TaskContext)
 
   useEffect(() => {
-    handleGetTasks();
+    getAllTasks();
   }, []);
 
   const handleChange = async (id: number, newState: string) => {
@@ -138,30 +126,29 @@ const ToDoComponent = () => {
         id: id,
       },
     });
-    await handleGetTasks();
+    getAllTasks();
   };
-  const task = response?.data.dataResponse || [];
 
   if (loading) return <SpinnerBar showSpinner={loading} />;
   return (
     <div className="all-tasks">
       <TaskGroup
         title="To Do"
-        tasks={task.filter(
+        tasks={tasks.filter(
           (task: { state: string }) => task.state.toLowerCase() === "todo"
         )}
         handleChange={handleChange}
       />
       <TaskGroup
         title="Doing"
-        tasks={task.filter(
+        tasks={tasks.filter(
           (task: { state: string }) => task.state.toLowerCase() === "doing"
         )}
         handleChange={handleChange}
       />
       <TaskGroup
         title="Done"
-        tasks={task.filter(
+        tasks={tasks.filter(
           (task: { state: string }) => task.state.toLowerCase() === "done"
         )}
         handleChange={handleChange}

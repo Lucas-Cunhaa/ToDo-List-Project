@@ -5,8 +5,6 @@ import useAxios from "../hooks/useAxios"
 import FormAddToDo from "./FormAddTodo"
 import FormAddMember from "./FormAddMember"
 
-
-
 const TopBar = () => {
 const [openFormToDo, setOpenFormToDo] = useState(false)
 
@@ -15,6 +13,7 @@ const [openFormMember, setOpenFormMember] = useState(false)
 const [response, setResponse] = useState<AxiosResponse>();
 
 const { loading,  fetch} = useAxios()
+
 
 const handleGetListName = async () => {
     const id = sessionStorage.getItem("list_id");
@@ -26,10 +25,11 @@ const handleGetListName = async () => {
       },
     });
     setResponse(data)
+    
   };
 
   useEffect(() => {
-    handleGetListName();
+    handleGetListName()
   }, []);
 
 

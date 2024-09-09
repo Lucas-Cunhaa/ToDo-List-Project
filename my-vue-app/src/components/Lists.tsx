@@ -1,9 +1,9 @@
 import "../Css/list.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosResponse } from "axios";
+import { TaskContext } from "./useContext";
 import useAxios from "../hooks/useAxios";
-
 
 interface List {
   id: number;
@@ -15,6 +15,7 @@ const Lists = () => {
   const { loading, fetch } = useAxios();
   const [selectedListId, setSelectedListId] = useState<number | null>(null);
   const [response, setResponse] = useState<AxiosResponse>();
+  const { getAllTasks } = useContext(TaskContext)
 
   const navigate = useNavigate();
 
@@ -34,8 +35,9 @@ const Lists = () => {
   const handleGetTasks = async (id: number) => {
     sessionStorage.setItem("list_id", id.toString());
     setSelectedListId(id);
+    getAllTasks()
     navigate("/toDo");
-    navigate(0);
+    
   };
 
   useEffect(() => {
