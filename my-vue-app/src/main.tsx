@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <HomePage />
   } ,
   {
-    path: "/toDo",
+    path: "/tasks",
     element: <ToDoPage />
   } ,
 ]);

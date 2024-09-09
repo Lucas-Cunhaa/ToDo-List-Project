@@ -1,6 +1,7 @@
 import "../Css/topBar.css"
 import { useState, useEffect } from "react"
 import { AxiosResponse } from "axios"
+import { useNavigate } from "react-router-dom"
 import useAxios from "../hooks/useAxios"
 import FormAddToDo from "./FormAddTodo"
 import FormAddMember from "./FormAddMember"
@@ -14,6 +15,7 @@ const [response, setResponse] = useState<AxiosResponse>();
 
 const { loading,  fetch} = useAxios()
 
+const navigate = useNavigate()
 
 const handleGetListName = async () => {
     const id = sessionStorage.getItem("list_id");
@@ -25,11 +27,13 @@ const handleGetListName = async () => {
       },
     });
     setResponse(data)
+    navigate("/tasks")
     
   };
 
   useEffect(() => {
-    handleGetListName()
+    handleGetListName();
+    
   }, []);
 
 

@@ -42,7 +42,7 @@ const FormLogin = () => {
   useEffect(() => {
     if (response) {
       handleSetUser(response.data.dataResponse.id);
-      const timeout = setTimeout(() => navigate("/toDo"), 1500);
+      const timeout = setTimeout(() => navigate("/tasks"), 1500);
 
       return () => clearTimeout(timeout);
     }

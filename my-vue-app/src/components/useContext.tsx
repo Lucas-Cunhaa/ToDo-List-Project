@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 
 type Task = {
@@ -11,12 +11,18 @@ type Task = {
 }
 interface TasksContextData {
     tasks: Array<Task>;
+    activeList: number; 
+    handleSetList: (id : number) => void; 
     getAllTasks: () => void;
+    
 }
 
 export const TaskContext = React.createContext<TasksContextData>({
     tasks: [], 
+    activeList: 1,
+    handleSetList: () => {},
     getAllTasks: () => {}
+    
 });
 
 export interface ITasksProviderProps {
@@ -25,26 +31,32 @@ export interface ITasksProviderProps {
 
 export const TaskProvider: React.FC<ITasksProviderProps> = ({ children }) => {
     const [tasks, setTask] = useState<Task[]>([])
-
+    const [activeList, setActiveList] = useState(1)
     const { fetch } = useAxios()
-
     const getAllTasks = async () => {
-        const list_id = sessionStorage.getItem("list_id");
         const response = await fetch({
           url: "tasks",
           method: "get",
           params: {
-            id: list_id,
+            id: activeList,
           },
         });
+        
         if (response) {
             setTask(response?.data.dataResponse);
         }
-        
       };
     
+    useEffect(() => {
+        getAllTasks()
+    }, [activeList])
+    
+    const handleSetList = (id: number) => {
+        setActiveList(id)
+    }
+    
     return(
-        <TaskContext.Provider value={ {tasks, getAllTasks } }>
+        <TaskContext.Provider value={ {tasks, activeList, handleSetList, getAllTasks} }>
             {children}
         </TaskContext.Provider>
     )

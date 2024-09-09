@@ -13,9 +13,8 @@ interface List {
 
 const Lists = () => {
   const { loading, fetch } = useAxios();
-  const [selectedListId, setSelectedListId] = useState<number | null>(null);
   const [response, setResponse] = useState<AxiosResponse>();
-  const { getAllTasks } = useContext(TaskContext)
+  const { activeList, handleSetList } = useContext(TaskContext)
 
   const navigate = useNavigate();
 
@@ -28,16 +27,13 @@ const Lists = () => {
         id: id,
       },
     });
-
+    console.log(data)
     setResponse(data);
   };
 
-  const handleGetTasks = async (id: number) => {
-    sessionStorage.setItem("list_id", id.toString());
-    setSelectedListId(id);
-    getAllTasks()
-    navigate("/toDo");
-    
+  const handleGetTasks = (id: number) => {
+    handleSetList(id)
+    navigate("/tasks");
   };
 
   useEffect(() => {
@@ -54,7 +50,7 @@ const Lists = () => {
         <div
           key={id}
           onClick={() => handleGetTasks(id)}
-          className={`list-item ${id === selectedListId ? "selected" : ""}`}
+          className={`list-item ${id === activeList ? "selected" : ""}`}
         >
           <div
             className={`list-section ${id % 2 === 0 ? "background-gray" : ""}`}
