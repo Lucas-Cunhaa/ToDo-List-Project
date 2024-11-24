@@ -37,6 +37,7 @@ export const TaskProvider: React.FC<ITasksProviderProps> = ({ children }) => {
     const [tasks, setTask] = useState<Task[]>([])
     const [activeList, setActiveList] = useState<List>({id: 1, title: ""})
     const { fetch } = useAxios()
+    
     const getAllTasks = async () => {
         const response = await fetch({
           url: "tasks",
